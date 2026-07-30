@@ -1,0 +1,9 @@
+{
+  "appId": "com.nadipudi.villageportal",
+  "appName": "నడిపూడి గ్రామ యాప్",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  }
+}

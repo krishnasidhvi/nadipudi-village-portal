@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Navigation from "./components/Navigation";
+import AppInstallBanner from "./components/AppInstallBanner";
 import AgriHub from "./components/AgriHub";
 import VillageMap from "./components/VillageMap";
 import AnalyticsHub from "./components/AnalyticsHub";
@@ -27,6 +28,9 @@ export default function App() {
     <div className="app-container">
       {/* Top Header & Emergency Bar */}
       <Header lang={lang} setLang={setLang} theme={theme} setTheme={setTheme} t={t} />
+
+      {/* Mobile Android PWA Install Banner */}
+      <AppInstallBanner lang={lang} t={t} />
 
       {/* Main Tab Navigation Bar */}
       <Navigation activeTab={activeTab} setActiveTab={setActiveTab} t={t} />

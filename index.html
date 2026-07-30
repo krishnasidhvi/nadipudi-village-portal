@@ -5,7 +5,9 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
+    <link rel="manifest" href="./manifest.json" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="theme-color" content="#0e5e38" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>నడిపూడి గ్రామ సమాచార వేదిక | Nadipudi Digital Village Portal (Penugonda Mandal, West Godavari - 534326)</title>
     <meta name="description" content="Official community portal for Nadipudi village, Penugonda Mandal, West Godavari District, Andhra Pradesh. Mandi prices, agricultural updates, voter roll search, village boundary map, AP welfare schemes, and secretariat directory." />
@@ -14,5 +16,14 @@
   <body>
     <div id="root"></div>
     <script type="module" src="./src/main.jsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js').catch((err) => {
+            console.log('SW registration failed: ', err);
+          });
+        });
+      }
+    </script>
   </body>
 </html>

@@ -1,0 +1,19 @@
+{
+  "short_name": "నడిపూడి యాప్",
+  "name": "నడిపూడి గ్రామ సమాచార వేదిక (Nadipudi Digital Village Portal)",
+  "description": "Nadipudi Village Portal - Mandi prices, agriculture updates, voter roll search, AP welfare schemes, and secretariat directory.",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#0e5e38",
+  "theme_color": "#0e5e38",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "./"
+}
