@@ -1,30 +1,31 @@
 export const mapConfig = {
-  center: [16.6325, 81.7450], // Center of Nadipudi village
-  zoom: 14,
+  center: [16.6489764, 81.8284057], // Exact Nadipudi Google Maps coordinates
+  zoom: 15,
   mandalTe: "పెనుగొండ మండలం",
   mandalEn: "Penugonda Mandal",
   districtTe: "పశ్చిమ గోదావరి జిల్లా",
   districtEn: "West Godavari District",
   pincode: "534326",
+  googleMapsUrl: "https://www.google.com/maps/@16.6489764,81.8284057,16.25z",
   totalAreaAcres: "1,240 ఎకరాలు (Acres)",
   totalAreaSqKm: "5.02 చదరపు కిలోమీటర్లు (sq. km)",
   bounds: [
-    [16.6180, 81.7320],
-    [16.6470, 81.7580],
+    [16.6350, 81.8100],
+    [16.6620, 81.8450],
   ]
 };
 
 // Nadipudi Village Official Geographical Boundary Polygon (Penugonda Mandal)
 export const nadipudiBoundaryPolygon = [
-  [16.6450, 81.7380],
-  [16.6465, 81.7470],
-  [16.6420, 81.7560],
-  [16.6320, 81.7580],
-  [16.6210, 81.7530],
-  [16.6180, 81.7440],
-  [16.6220, 81.7340],
-  [16.6330, 81.7320],
-  [16.6450, 81.7380], // Closed polygon loop
+  [16.6580, 81.8220],
+  [16.6590, 81.8320],
+  [16.6540, 81.8380],
+  [16.6440, 81.8390],
+  [16.6390, 81.8330],
+  [16.6380, 81.8240],
+  [16.6420, 81.8170],
+  [16.6510, 81.8160],
+  [16.6580, 81.8220], // Closed polygon loop
 ];
 
 export const waterBodies = [
@@ -36,7 +37,7 @@ export const waterBodies = [
     typeEn: "Drinking Water Lake",
     sizeTe: "సుమారు 14 ఎకరాలు",
     sizeEn: "Approx 14 Acres",
-    coords: [16.6355, 81.7420],
+    coords: [16.6512, 81.8260],
     descTe: "నడిపూడి గ్రామానికి రక్షిత మంచినీటిని అందించే ప్రధాన జలాశయం. గ్రామానికి ఉత్తర భాగంలో ఉంది.",
     descEn: "Primary drinking water reservoir supplying filtered water to Nadipudi households.",
     iconType: "lake",
@@ -49,7 +50,7 @@ export const waterBodies = [
     typeEn: "Main Irrigation Canal",
     sizeTe: "పెనుగొండ మండల ఆయకట్టు ద్వారా ప్రవాహం",
     sizeEn: "Main Branch feeding Penugonda Ayacut",
-    coords: [16.6380, 81.7420],
+    coords: [16.6500, 81.8270],
     descTe: "ధవళేశ్వరం బ్యారేజీ నుండి నిరంతరం సాగునీటిని అందించే గోదావరి కెనాల్ శాఖ. వరి పొలాలకు నీరందిస్తుంది.",
     descEn: "Major irrigation canal carrying fresh Godavari river water for paddy crops in Nadipudi.",
     iconType: "canal",
@@ -62,7 +63,7 @@ export const waterBodies = [
     typeEn: "Feeder Irrigation Canal",
     sizeTe: "నడిపూడి దక్షిణం నుండి ప్రవాహం",
     sizeEn: "Southern Agricultural Feeder",
-    coords: [16.6300, 81.7480],
+    coords: [16.6490, 81.8330],
     descTe: "పెనుగొండ మెయిన్ రోడ్డుకు సమాంతరంగా నడిపూడి పొలాల గుండా వెళ్ళే రైతు సాగునీటి కాలువ.",
     descEn: "Branch canal feeding the southern agricultural fields and aqua ponds of Nadipudi.",
     iconType: "canal",
@@ -75,7 +76,7 @@ export const waterBodies = [
     typeEn: "Community Pond",
     sizeTe: "సుమారు 6 ఎకరాలు",
     sizeEn: "Approx 6 Acres",
-    coords: [16.6300, 81.7470],
+    coords: [16.6470, 81.8305],
     descTe: "శ్రీ రామాలయం వీధి సమీపంలోని చారిత్రాత్మక గ్రామ చెరువు. భూగర్భ జలాల ఇంకుడు కుంటగా ఉపయోగపడుతుంది.",
     descEn: "Historic village lake near Ramalayam street helping groundwater recharge.",
     iconType: "lake",
@@ -88,7 +89,7 @@ export const waterBodies = [
     typeEn: "Aqua & Crop Ponds Cluster",
     sizeTe: "గ్రామ పరిసరాలలో విస్తరించి ఉన్నాయి",
     sizeEn: "Widespread Agri Area",
-    coords: [16.6280, 81.7400],
+    coords: [16.6440, 81.8230],
     descTe: "వెన్నామి రొయ్యల సాగు మరియు వరి నాట్ల నీటి నిర్వహణకు ఉపయోగపడే పొలాల చెరువులు.",
     descEn: "Vannamei shrimp farming ponds and seasonal water holding tanks.",
     iconType: "pond",
@@ -100,7 +101,7 @@ export const villageLandmarks = [
     id: "lm1",
     nameTe: "నడిపూడి గ్రామ సచివాలయం (Secretariat)",
     nameEn: "Nadipudi Village Secretariat",
-    coords: [16.6325, 81.7450],
+    coords: [16.6489764, 81.8284057], // Exact Google Maps Pin
     typeTe: "ప్రభుత్వ కార్యాలయం",
     typeEn: "Government Office",
   },
@@ -108,7 +109,7 @@ export const villageLandmarks = [
     id: "lm2",
     nameTe: "మండల పరిషత్ ప్రాథమిక పాఠశాల",
     nameEn: "Mandal Parishad Primary School",
-    coords: [16.6335, 81.7440],
+    coords: [16.6500, 81.8275],
     typeTe: "పాఠశాల & పోలింగ్ కేంద్రం",
     typeEn: "School & Polling Booth",
   },
@@ -116,7 +117,7 @@ export const villageLandmarks = [
     id: "lm3",
     nameTe: "రైతు భరోసా కేంద్రం (RBK Center)",
     nameEn: "Rythu Bharosa Center (RBK)",
-    coords: [16.6315, 81.7460],
+    coords: [16.6480, 81.8295],
     typeTe: "రైతు సేవ కేంద్రం",
     typeEn: "Farmer Service Hub",
   }
@@ -127,10 +128,10 @@ export const canalLines = [
     id: "c1",
     name: "Penugonda Main Canal",
     positions: [
-      [16.6450, 81.7380],
-      [16.6380, 81.7420],
-      [16.6300, 81.7480],
-      [16.6200, 81.7520],
+      [16.6580, 81.8210],
+      [16.6500, 81.8270],
+      [16.6440, 81.8320],
+      [16.6380, 81.8360],
     ],
     color: "#0284c7",
   },
@@ -138,9 +139,9 @@ export const canalLines = [
     id: "c2",
     name: "Godavari Delta Feeder Branch",
     positions: [
-      [16.6480, 81.7450],
-      [16.6350, 81.7490],
-      [16.6250, 81.7550],
+      [16.6580, 81.8300],
+      [16.6490, 81.8330],
+      [16.6400, 81.8370],
     ],
     color: "#0369a1",
   }
