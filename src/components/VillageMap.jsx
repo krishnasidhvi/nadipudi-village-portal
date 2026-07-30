@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Polygon, Tooltip } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { Chart as ChartJS, ArcElement, Tooltip as ChartTooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import { MapPin, Shield, Compass, PieChart, Layers, CheckCircle2 } from "lucide-react";
+import { Shield, Compass, PieChart, Layers } from "lucide-react";
 import { mapConfig, nadipudiBoundaryPolygon } from "../data/mapData";
 import { landUseData } from "../data/analyticsData";
 
@@ -113,7 +113,7 @@ export default function VillageMap({ lang, t }) {
         </div>
       </div>
 
-      {/* Main Dedicated Village Boundary Map Container (NO MARKERS/PINS) */}
+      {/* Main Dedicated Village Boundary Map Container */}
       <div
         className="card"
         style={{
@@ -153,7 +153,7 @@ export default function VillageMap({ lang, t }) {
           </div>
         </div>
 
-        {/* Dynamic Display (Leaflet Boundary or Google Maps Embed) */}
+        {/* Dynamic Display */}
         {showGoogleEmbed ? (
           <div style={{ height: "520px", width: "100%", borderRadius: "12px", overflow: "hidden" }}>
             <iframe
@@ -181,7 +181,7 @@ export default function VillageMap({ lang, t }) {
                 url={TILE_LAYERS[mapType].url}
               />
 
-              {/* ONLY Nadipudi Village Official Boundary Polygon */}
+              {/* Nadipudi Village Boundary Polygon */}
               <Polygon
                 positions={nadipudiBoundaryPolygon}
                 pathOptions={{
