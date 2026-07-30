@@ -10,6 +10,7 @@ export const translations = {
     // Tabs
     tabAgri: "వ్యవసాయం & పొలాలు",
     tabMap: "భూగోళం & కాలువలు",
+    tabKeyPlaces: "📌 ముఖ్య ప్రాంతాల మ్యాప్",
     tabAnalytics: "📊 గ్రాఫ్‌లు & విశ్లేషణ",
     tabElection: "ఎన్నికలు & ఓటర్లు",
     tabSchemes: "ప్రభుత్వ పథకాలు",
@@ -101,6 +102,7 @@ export const translations = {
     // Tabs
     tabAgri: "Agriculture & Fields",
     tabMap: "Map & Hydrography",
+    tabKeyPlaces: "📌 Key Places Map",
     tabAnalytics: "📊 Charts & Analytics",
     tabElection: "Elections & Voters",
     tabSchemes: "Govt Welfare Schemes",

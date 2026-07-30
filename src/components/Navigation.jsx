@@ -1,10 +1,11 @@
 import React from "react";
-import { Wheat, Map, BarChart3, Vote, Award, Bell, PhoneCall, HelpCircle } from "lucide-react";
+import { Wheat, Map, MapPin, BarChart3, Vote, Award, Bell, PhoneCall, HelpCircle } from "lucide-react";
 
 export default function Navigation({ activeTab, setActiveTab, t }) {
   const tabs = [
     { id: "agri", label: t.tabAgri, icon: Wheat },
     { id: "map", label: t.tabMap, icon: Map },
+    { id: "keyplaces", label: t.tabKeyPlaces, icon: MapPin },
     { id: "analytics", label: t.tabAnalytics, icon: BarChart3 },
     { id: "elections", label: t.tabElection, icon: Vote },
     { id: "schemes", label: t.tabSchemes, icon: Award },
