@@ -1,15 +1,15 @@
 export const spandanaInfo = {
-  officialUrl: "https://spandana.ap.gov.in/",
+  officialUrl: "https://meekosam.ap.gov.in/",
   helpline: "1902",
   stepsTe: [
-    "1. అధికారిక AP స్పందన పోర్టల్ (spandana.ap.gov.in) ని సందర్శించండి లేదా 1902 టోల్ ఫ్రీ నంబర్‌కు కాల్ చేయండి.",
+    "1. అధికారిక AP స్పందన / మీ కోసం పోర్టల్ (meekosam.ap.gov.in) ని సందర్శించండి లేదా 1902 టోల్ ఫ్రీ నంబర్‌కు కాల్ చేయండి.",
     "2. మీ ఆధార్ సంఖ్య మరియు మొబైల్ సంఖ్య నమోదు చేసి OTP ద్వారా లాగిన్ అవ్వండి.",
     "3. జిల్లా: 'పశ్చిమ గోదావరి', మండలం: 'పెనుగొండ', గ్రామం: 'నడిపూడి' ని ఎంచుకోండి.",
     "4. సమస్య విభాగాన్ని (రెవెన్యూ, పంచాయతీ రాజ్, విద్యుత్, తాగునీరు మొదలైనవి) ఎంచుకుని మీ ఫిర్యాదును టైప్ చేయండి.",
     "5. అప్లికేషన్ సబ్మిట్ చేసిన తర్వాత మీ ఫోన్‌కు వచ్చే 14 అంకెల గ్రీవెన్స్ ఐడీ (Grievance Reference Number) ద్వారా స్థితి తనిఖీ చేయవచ్చు."
   ],
   stepsEn: [
-    "1. Visit the official AP Spandana Portal (spandana.ap.gov.in) or dial toll-free 1902.",
+    "1. Visit the official AP Spandana Portal (meekosam.ap.gov.in) or dial toll-free 1902.",
     "2. Enter your Aadhaar number and Mobile number to log in via OTP authentication.",
     "3. Select District: 'West Godavari', Mandal: 'Penugonda', Village: 'Nadipudi'.",
     "4. Select problem department (Revenue, Panchayat Raj, Electricity, Water Supply, etc.) and write your query.",
