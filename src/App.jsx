@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import AgriHub from "./components/AgriHub";
 import VillageMap from "./components/VillageMap";
+import AnalyticsHub from "./components/AnalyticsHub";
 import ElectionHub from "./components/ElectionHub";
 import SchemesHub from "./components/SchemesHub";
 import NoticeBoard from "./components/NoticeBoard";
@@ -34,6 +35,7 @@ export default function App() {
       <main>
         {activeTab === "agri" && <AgriHub lang={lang} t={t} />}
         {activeTab === "map" && <VillageMap lang={lang} t={t} />}
+        {activeTab === "analytics" && <AnalyticsHub lang={lang} t={t} />}
         {activeTab === "elections" && <ElectionHub lang={lang} t={t} />}
         {activeTab === "schemes" && <SchemesHub lang={lang} t={t} />}
         {activeTab === "notices" && <NoticeBoard lang={lang} t={t} />}

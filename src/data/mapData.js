@@ -1,12 +1,31 @@
 export const mapConfig = {
-  center: [16.6325, 81.7450], // Nadipudi, Penugonda Mandal coordinates
+  center: [16.6325, 81.7450], // Center of Nadipudi village
   zoom: 14,
   mandalTe: "పెనుగొండ మండలం",
   mandalEn: "Penugonda Mandal",
   districtTe: "పశ్చిమ గోదావరి జిల్లా",
   districtEn: "West Godavari District",
   pincode: "534326",
+  totalAreaAcres: "1,240 ఎకరాలు (Acres)",
+  totalAreaSqKm: "5.02 చదరపు కిలోమీటర్లు (sq. km)",
+  bounds: [
+    [16.6180, 81.7320],
+    [16.6470, 81.7580],
+  ]
 };
+
+// Nadipudi Village Official Geographical Boundary Polygon (Penugonda Mandal)
+export const nadipudiBoundaryPolygon = [
+  [16.6450, 81.7380],
+  [16.6465, 81.7470],
+  [16.6420, 81.7560],
+  [16.6320, 81.7580],
+  [16.6210, 81.7530],
+  [16.6180, 81.7440],
+  [16.6220, 81.7340],
+  [16.6330, 81.7320],
+  [16.6450, 81.7380], // Closed polygon loop
+];
 
 export const waterBodies = [
   {
@@ -103,7 +122,6 @@ export const villageLandmarks = [
   }
 ];
 
-// Lines for Canals representation on map
 export const canalLines = [
   {
     id: "c1",

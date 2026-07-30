@@ -10,6 +10,7 @@ export const translations = {
     // Tabs
     tabAgri: "వ్యవసాయం & పొలాలు",
     tabMap: "భూగోళం & కాలువలు",
+    tabAnalytics: "📊 గ్రాఫ్‌లు & విశ్లేషణ",
     tabElection: "ఎన్నికలు & ఓటర్లు",
     tabSchemes: "ప్రభుత్వ పథకాలు",
     tabNotices: "వార్తా పలక",
@@ -100,6 +101,7 @@ export const translations = {
     // Tabs
     tabAgri: "Agriculture & Fields",
     tabMap: "Map & Hydrography",
+    tabAnalytics: "📊 Charts & Analytics",
     tabElection: "Elections & Voters",
     tabSchemes: "Govt Welfare Schemes",
     tabNotices: "Village Notice Board",
