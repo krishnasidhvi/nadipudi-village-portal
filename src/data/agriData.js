@@ -97,6 +97,15 @@ export const publicAgriLinks = [
     descEn: "Penugonda mandal rainfall forecast, temperature, humidity, and Sir Arthur Cotton Barrage flood discharge updates.",
     url: "https://apsdma.ap.gov.in/",
     tag: "Live Weather & Canal",
+  },
+  {
+    id: "a5",
+    titleTe: "PMFBY - ప్రధానమంత్రి ఫసల్ బీమా యోజన పోర్టల్",
+    titleEn: "PMFBY National Crop Insurance Portal",
+    descTe: "కేంద్ర ప్రభుత్వం నిర్వహించే జాతీయ పంటల బీమా పోర్టల్‌లో బీమా ప్రీమియం లెక్కించడం, అప్లికేషన్ స్టేటస్ & క్లెయిమ్ తనిఖీ.",
+    descEn: "National Crop Insurance Portal for insurance premium calculation, crop policy status tracking & claim settlement details.",
+    url: "https://pmfby.gov.in/",
+    tag: "PMFBY Crop Insurance",
   }
 ];
 

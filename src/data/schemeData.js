@@ -73,6 +73,21 @@ export const govtSchemes = [
     portalUrl: "https://karshak.ap.gov.in/",
     deptTe: "ఆంధ్రప్రదేశ్ వ్యవసాయ శాఖ",
     deptEn: "Dept of Agriculture, Govt of AP",
+  },
+  {
+    id: "s6",
+    category: "farmer",
+    nameTe: "ప్రధానమంత్రి ఫసల్ బీమా యోజన (PMFBY పంటల బీమా)",
+    nameEn: "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+    benefitTe: "ప్రకృతి వైపరీత్యాలు, అకాల వర్షాలు, తుఫానులు మరియు చీడపీడల వల్ల పంట నష్టపోయిన రైతులకు సమగ్ర బీమా నష్టపరిహారం.",
+    benefitEn: "Comprehensive financial protection & crop insurance payouts to farmers against yield loss from natural calamities, drought, floods & pests.",
+    eligibilityTe: "నోటిఫై చేసిన పంటలు (వరి, మిర్చి మొదలైనవి) సాగుచేసే సొంత భూమి రైతులు, కౌలు రైతులు మరియు భాగస్వామ్య రైతులు.",
+    eligibilityEn: "All farmers including tenant farmers and sharecroppers growing notified crops in notified areas with e-Crop booking.",
+    docsTe: "ఆధార్ కార్డు, పట్టాదార్ పాస్ పుస్తకం / వెబ్‌లాండ్ అడంగల్ / కౌలు ధృవీకరణ, బ్యాంక్ పాస్ బుక్, ఈ-క్రాప్ రశీదు.",
+    docsEn: "Aadhaar Card, Land Ownership Document (Webland Adangal / 1B) / Tenant Sowing Certificate, Bank Passbook, e-Crop Booking Receipt.",
+    portalUrl: "https://pmfby.gov.in/",
+    deptTe: "కేంద్ర వ్యవసాయ & రైతు సంక్షేమ మంత్రిత్వ శాఖ / AP వ్యవసాయ శాఖ",
+    deptEn: "Ministry of Agriculture & Farmers Welfare, Govt of India",
   }
 ];
 
