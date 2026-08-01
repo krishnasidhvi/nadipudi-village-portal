@@ -9,7 +9,7 @@ export const mandiPrices = [
     trend: "+ ₹40 (స్థిరమైన పెరుగుదల)",
     locationTe: "మార్టేరు / పెనుగొండ మార్కెట్",
     locationEn: "Marteru / Penugonda Market",
-    updatedDate: "31-07-2026",
+    updatedDate: "01-08-2026",
   },
   {
     id: "m2",
@@ -21,7 +21,7 @@ export const mandiPrices = [
     trend: "+ ₹250 (డిమాండ్ అధికం)",
     locationTe: "తణుకు / పెనుగొండ మండి",
     locationEn: "Tanuku / Penugonda Mandi",
-    updatedDate: "31-07-2026",
+    updatedDate: "01-08-2026",
   },
   {
     id: "m3",
@@ -33,7 +33,7 @@ export const mandiPrices = [
     trend: "- ₹5 (సాధారణ మార్పు)",
     locationTe: "భీమవరం ఆక్వా మార్కెట్",
     locationEn: "Bhimavaram Aqua Hub",
-    updatedDate: "31-07-2026",
+    updatedDate: "01-08-2026",
   },
   {
     id: "m4",
@@ -45,7 +45,7 @@ export const mandiPrices = [
     trend: "+ ₹100",
     locationTe: "పాలకొల్లు రైతు బజార్",
     locationEn: "Palakollu Rythu Bazaar",
-    updatedDate: "31-07-2026",
+    updatedDate: "01-08-2026",
   },
   {
     id: "m5",
@@ -57,7 +57,7 @@ export const mandiPrices = [
     trend: "స్థిరం (Stable)",
     locationTe: "తణుకు షుగర్స్",
     locationEn: "Tanuku Sugar Factory Yard",
-    updatedDate: "31-07-2026",
+    updatedDate: "01-08-2026",
   }
 ];
 
