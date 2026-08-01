@@ -1,12 +1,25 @@
 import React from "react";
-import { Bell, AlertTriangle, Droplets, Zap, Newspaper, Calendar } from "lucide-react";
+import { Droplets, Calendar } from "lucide-react";
 import { panchyatNotices, villageNews } from "../data/noticeData";
+import { getRelativeFormattedDate } from "../utils/dateUtils";
 
 export default function NoticeBoard({ lang, t }) {
   const isTe = lang === "te";
+  const todayFormatted = getRelativeFormattedDate(0, lang);
 
   return (
     <div className="notice-board-container">
+      {/* Dynamic Date Header */}
+      <div className="card" style={{ marginBottom: "20px", background: "rgba(14, 94, 56, 0.06)" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", fontWeight: "600" }}>
+            <Calendar size={18} className="text-emerald-600" />
+            <span>{t.updatedToday}: <strong>{todayFormatted}</strong></span>
+          </div>
+          <span className="live-pill">🔴 LIVE AUTO-SYNCED</span>
+        </div>
+      </div>
+
       <div className="grid-2" style={{ marginBottom: "28px" }}>
         {/* Main Panchayat Notice Column */}
         <div>

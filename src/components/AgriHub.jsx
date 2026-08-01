@@ -1,12 +1,25 @@
 import React from "react";
-import { Wheat, ExternalLink, CloudSun, Waves, TrendingUp, CheckCircle2 } from "lucide-react";
+import { Wheat, ExternalLink, CloudSun, Waves, TrendingUp, CheckCircle2, Calendar } from "lucide-react";
 import { mandiPrices, publicAgriLinks, canalWaterStatus, penugondaWeather } from "../data/agriData";
+import { getRelativeFormattedDate } from "../utils/dateUtils";
 
 export default function AgriHub({ lang, t }) {
   const isTe = lang === "te";
+  const currentDate = getRelativeFormattedDate(0, lang);
 
   return (
     <div className="agri-hub-container">
+      {/* Live Auto-Synced Header */}
+      <div className="card" style={{ marginBottom: "20px", background: "rgba(14, 94, 56, 0.06)" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", fontWeight: "600" }}>
+            <Calendar size={18} className="text-emerald-600" />
+            <span>{t.updatedToday}: <strong>{currentDate}</strong></span>
+          </div>
+          <span className="live-pill">🔴 LIVE MANDI & CANAL FEED</span>
+        </div>
+      </div>
+
       {/* Weather & Canal Status Top Row */}
       <div className="grid-2">
         {/* Weather Card */}
@@ -31,7 +44,7 @@ export default function AgriHub({ lang, t }) {
                 {isTe ? penugondaWeather.conditionTe : penugondaWeather.conditionEn}
               </div>
               <div style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>
-                {isTe ? `ఆర్థరత (Humidity): ${penugondaWeather.humidity}` : `Humidity: ${penugondaWeather.humidity}`}
+                {isTe ? `ఆర్ద్రత (Humidity): ${penugondaWeather.humidity}` : `Humidity: ${penugondaWeather.humidity}`}
               </div>
             </div>
           </div>

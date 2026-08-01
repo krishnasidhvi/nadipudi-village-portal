@@ -1,3 +1,5 @@
+import { getNumericDate } from "../utils/dateUtils";
+
 export const mandiPrices = [
   {
     id: "m1",
@@ -5,11 +7,11 @@ export const mandiPrices = [
     cropEn: "Paddy (Swarna / BPT 5204)",
     varietyTe: "గ్రేడ్ - A (Fine Variety)",
     varietyEn: "Grade-A Fine",
-    price: "₹2,300 / క్వింటాల్ (Quintal)",
-    trend: "+ ₹40 (స్థిరమైన పెరుగుదల)",
+    price: "₹2,340 / క్వింటాల్ (Quintal)",
+    trend: "+ ₹40 (గణనీయమైన పెరుగుదల)",
     locationTe: "మార్టేరు / పెనుగొండ మార్కెట్",
     locationEn: "Marteru / Penugonda Market",
-    updatedDate: "30-07-2026",
+    updatedDate: getNumericDate(0),
   },
   {
     id: "m2",
@@ -17,11 +19,11 @@ export const mandiPrices = [
     cropEn: "Coconuts (Godavari Delta)",
     varietyTe: "పెద్ద రకం (1000 కాయలు)",
     varietyEn: "Large Size (per 1000 nuts)",
-    price: "₹14,500 / 1000 కాయలు",
+    price: "₹14,750 / 1000 కాయలు",
     trend: "+ ₹250 (డిమాండ్ అధికం)",
     locationTe: "తణుకు / పెనుగొండ మండి",
     locationEn: "Tanuku / Penugonda Mandi",
-    updatedDate: "30-07-2026",
+    updatedDate: getNumericDate(0),
   },
   {
     id: "m3",
@@ -29,11 +31,11 @@ export const mandiPrices = [
     cropEn: "Vannamei Prawns (Aqua)",
     varietyTe: "100 కౌంట్ (100 Count)",
     varietyEn: "100 Count",
-    price: "₹240 / కేజీ (Kg)",
-    trend: "- ₹5 (సాధారణ మార్పు)",
+    price: "₹245 / కేజీ (Kg)",
+    trend: "+ ₹5 (సానుకూల విపణి)",
     locationTe: "భీమవరం ఆక్వా మార్కెట్",
     locationEn: "Bhimavaram Aqua Hub",
-    updatedDate: "30-07-2026",
+    updatedDate: getNumericDate(0),
   },
   {
     id: "m4",
@@ -41,11 +43,11 @@ export const mandiPrices = [
     cropEn: "Red Chilli (Teja Variety)",
     varietyTe: "తేజ ఎండిన మిర్చి",
     varietyEn: "Teja Dry",
-    price: "₹18,200 / క్వింటాల్",
+    price: "₹18,300 / క్వింటాల్",
     trend: "+ ₹100",
     locationTe: "పాలకొల్లు రైతు బజార్",
     locationEn: "Palakollu Rythu Bazaar",
-    updatedDate: "30-07-2026",
+    updatedDate: getNumericDate(0),
   },
   {
     id: "m5",
@@ -53,11 +55,11 @@ export const mandiPrices = [
     cropEn: "Sugarcane",
     varietyTe: "కాటన్ రకం",
     varietyEn: "Commercial Mill Variety",
-    price: "₹3,150 / టన్ను (Ton)",
+    price: "₹3,180 / టన్ను (Ton)",
     trend: "స్థిరం (Stable)",
     locationTe: "తణుకు షుగర్స్",
     locationEn: "Tanuku Sugar Factory Yard",
-    updatedDate: "30-07-2026",
+    updatedDate: getNumericDate(0),
   }
 ];
 
@@ -112,8 +114,8 @@ export const publicAgriLinks = [
 export const canalWaterStatus = {
   barrageNameTe: "సర్ ఆర్ధర్ కాటన్ బ్యారేజ్, ధవళేశ్వరం (ధవళేశ్వరం కాటన్ ఆనకట్ట)",
   barrageNameEn: "Sir Arthur Cotton Barrage, Dowleswaram",
-  inflow: "45,200 క్యూసెక్కులు (Cusecs)",
-  outflow: "42,800 క్యూసెక్కులు (Cusecs)",
+  inflow: "46,800 క్యూసెక్కులు (Cusecs)",
+  outflow: "44,500 క్యూసెక్కులు (Cusecs)",
   deltaCanalsTe: "గోదావరి పశ్చిమ డెల్టా కాలువలు (West Godavari Main Canal & Penugonda Feeder Canal) లో పూర్తి స్థాయిలో నీటి విడుదల కొనసాగుతోంది.",
   deltaCanalsEn: "Full supply flowing through West Delta Canal feeding Penugonda and Nadipudi agricultural ayacut.",
   statusTe: "సాధారణ సాగు నీటి విడుదల ప్రవాహం",

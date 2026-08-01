@@ -1,230 +1,181 @@
 import React from "react";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Bar, Line } from "react-chartjs-2";
-import { BarChart3, TrendingUp, Waves, Award, Vote } from "lucide-react";
-import {
-  commodityComparisonData,
-  paddyTrendData,
-  canalWaterFlowData,
-  schemeBeneficiaryData,
-  wardVoterData,
-} from "../data/analyticsData";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title, PointElement, LineElement } from "chart.js";
+import { Doughnut, Bar, Line } from "react-chartjs-2";
+import { Cpu, Users, Wheat, Award, Activity, Sparkles, TrendingUp, Droplets } from "lucide-react";
+import { villageDemographics, aiAgriTelemetry, dbtDisbursementData } from "../data/analyticsData";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title, PointElement, LineElement);
 
-export default function AnalyticsHub({ lang, t }) {
+export default function AnalyticsHub({ lang }) {
   const isTe = lang === "te";
 
-  // 1. Commodity Price Comparison Chart
-  const priceComparisonChartData = {
-    labels: isTe ? commodityComparisonData.labelsTe : commodityComparisonData.labelsEn,
+  // Chart 1: Land Cultivation Doughnut Chart
+  const landChartData = {
+    labels: isTe ? aiAgriTelemetry.landUseData.labelsTe : aiAgriTelemetry.landUseData.labelsEn,
     datasets: [
       {
-        label: isTe ? "వరి ధర (₹/క్వింటాల్)" : "Paddy Price (₹/Qtl)",
-        data: commodityComparisonData.paddyPrices,
-        backgroundColor: "rgba(22, 163, 74, 0.75)",
-        borderColor: "#16a34a",
-        borderWidth: 1.5,
-        borderRadius: 6,
+        data: aiAgriTelemetry.landUseData.acres,
+        backgroundColor: aiAgriTelemetry.landUseData.colors,
+        borderWidth: 2,
+        borderColor: "rgba(255, 255, 255, 0.4)",
       },
     ],
   };
 
-  // 2. 7-Day Paddy Price Trend Line Chart
-  const paddyTrendChartData = {
-    labels: paddyTrendData.labels,
+  // Chart 2: Age Distribution Bar Chart
+  const ageChartData = {
+    labels: isTe ? villageDemographics.ageDistribution.labelsTe : villageDemographics.ageDistribution.labelsEn,
     datasets: [
       {
-        label: isTe ? "స్వర్ణ వరి ధర (₹/క్వింటాల్)" : "Swarna Paddy Price (₹/Qtl)",
-        data: paddyTrendData.prices,
-        borderColor: "#d97706",
-        backgroundColor: "rgba(217, 119, 6, 0.15)",
-        fill: true,
-        tension: 0.3,
-        pointRadius: 5,
-        pointBackgroundColor: "#d97706",
+        label: isTe ? "జనాభా సంఖ్య" : "Population Count",
+        data: villageDemographics.ageDistribution.data,
+        backgroundColor: villageDemographics.ageDistribution.colors,
+        borderRadius: 8,
       },
     ],
   };
 
-  // 3. Canal Water Discharge Trend Chart
-  const canalWaterChartData = {
-    labels: canalWaterFlowData.labels,
+  // Chart 3: DBT Welfare Disbursement Chart (In Lakhs ₹)
+  const dbtChartData = {
+    labels: isTe ? dbtDisbursementData.schemesBreakdown.labelsTe : dbtDisbursementData.schemesBreakdown.labelsEn,
     datasets: [
       {
-        label: isTe ? "ఇన్-ఫ్లో (క్యూసెక్కులు)" : "Barrage Inflow (Cusecs)",
-        data: canalWaterFlowData.inflow,
-        borderColor: "#0284c7",
-        backgroundColor: "rgba(2, 132, 199, 0.1)",
-        tension: 0.3,
-      },
-      {
-        label: isTe ? "డెల్టా కాలువల విడుదల (క్యూసెక్కులు)" : "Canal Outflow (Cusecs)",
-        data: canalWaterFlowData.outflow,
-        borderColor: "#16a34a",
-        backgroundColor: "rgba(22, 163, 74, 0.1)",
-        tension: 0.3,
-      },
-    ],
-  };
-
-  // 4. Scheme Beneficiaries Coverage Bar Chart
-  const schemeChartData = {
-    labels: isTe ? schemeBeneficiaryData.labelsTe : schemeBeneficiaryData.labelsEn,
-    datasets: [
-      {
-        label: isTe ? "లబ్ధి పొందిన కుటుంబాలు" : "Enrolled Beneficiaries",
-        data: schemeBeneficiaryData.beneficiaries,
-        backgroundColor: "rgba(14, 94, 56, 0.8)",
-        borderRadius: 6,
-      },
-      {
-        label: isTe ? "అర్హత కలిగిన మొత్తం కుటుంబాలు" : "Total Eligible Families",
-        data: schemeBeneficiaryData.totalEligible,
-        backgroundColor: "rgba(100, 116, 139, 0.3)",
-        borderRadius: 6,
-      },
-    ],
-  };
-
-  // 5. Ward-Wise Voter Demographics Bar Chart
-  const wardVoterChartData = {
-    labels: isTe ? wardVoterData.labelsTe : wardVoterData.labelsEn,
-    datasets: [
-      {
-        label: isTe ? "పురుష ఓటర్లు (Male)" : "Male Voters",
-        data: wardVoterData.male,
-        backgroundColor: "rgba(2, 132, 199, 0.75)",
-        borderRadius: 4,
-      },
-      {
-        label: isTe ? "మహిళా ఓటర్లు (Female)" : "Female Voters",
-        data: wardVoterData.female,
-        backgroundColor: "rgba(217, 119, 6, 0.75)",
-        borderRadius: 4,
+        label: isTe ? "మంజూరైన నిధులు (లక్షల ₹ లలో)" : "Disbursed Amount (₹ in Lakhs)",
+        data: dbtDisbursementData.schemesBreakdown.amountLakhs,
+        backgroundColor: dbtDisbursementData.schemesBreakdown.colors,
+        borderRadius: 8,
       },
     ],
   };
 
   return (
     <div className="analytics-hub-container">
-      <div className="card" style={{ marginBottom: "24px" }}>
-        <div className="card-title-group">
-          <div className="card-icon-box">
-            <BarChart3 size={22} />
-          </div>
+      {/* Top AI & IoT Precision Telemetry Bar (Zenze Agri Style) */}
+      <div className="card hero-card" style={{ marginBottom: "24px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px" }}>
           <div>
-            <h2>
-              {isTe
-                ? "నడిపూడి డిజిటల్ గ్రాఫికల్ విశ్లేషణలు & డేటా గ్రాఫ్‌లు"
-                : "Nadipudi Village Graphical Analytics & Visual Charts"}
+            <div className="hero-badge">
+              <Cpu size={16} />
+              <span>{isTe ? "ఏఐ & ఐఓటీ ప్రత్యక్ష పరిచేల దత్తాంశం" : "AI & IoT Telemetry Command Center"}</span>
+            </div>
+            <h2 className="hero-heading" style={{ fontSize: "1.6rem" }}>
+              {isTe ? "నడిపూడి గ్రామ సాంకేతిక & జనాభా విశ్లేషణ" : "Nadipudi Real-Time AI Analytics & Census Dashboard"}
             </h2>
-            <p style={{ fontSize: "0.88rem", opacity: 0.8 }}>
-              {isTe
-                ? "పంట ధరల ట్రెండ్స్, కాలువల నీటి ఉధృతి, పథకాల సాయం & ఓటర్ల గ్రాఫ్‌ల ప్రదర్శన"
-                : "Real-time visual representations for market trends, canal discharge, schemes, and voting demographics"}
-            </p>
+          </div>
+          <span className="live-pill">🔴 LIVE SATELLITE & DBT FEED</span>
+        </div>
+
+        {/* ZenZe Style Live Sensor Telemetry Widgets */}
+        <div className="grid-4" style={{ marginTop: "20px" }}>
+          <div className="stat-card card" style={{ background: "rgba(34, 197, 94, 0.08)", border: "1px solid rgba(34, 197, 94, 0.3)" }}>
+            <div className="stat-icon" style={{ background: "rgba(34, 197, 94, 0.2)", color: "#22c55e" }}>
+              <Wheat size={22} />
+            </div>
+            <div>
+              <div className="stat-number">{aiAgriTelemetry.soilMoisture}</div>
+              <div className="stat-label">{isTe ? "మట్టి తేమ శాతం (Soil Moisture)" : "Optimal Soil Moisture"}</div>
+            </div>
+          </div>
+
+          <div className="stat-card card" style={{ background: "rgba(56, 189, 248, 0.08)", border: "1px solid rgba(56, 189, 248, 0.3)" }}>
+            <div className="stat-icon" style={{ background: "rgba(56, 189, 248, 0.2)", color: "#38bdf8" }}>
+              <Droplets size={22} />
+            </div>
+            <div>
+              <div className="stat-number">{aiAgriTelemetry.irrigationEfficiency}</div>
+              <div className="stat-label">{isTe ? "సాగునీటి పంపిణీ సామర్థ్యం" : "Irrigation Canal Efficiency"}</div>
+            </div>
+          </div>
+
+          <div className="stat-card card" style={{ background: "rgba(251, 191, 36, 0.08)", border: "1px solid rgba(251, 191, 36, 0.3)" }}>
+            <div className="stat-icon" style={{ background: "rgba(251, 191, 36, 0.2)", color: "#fbbf24" }}>
+              <Sparkles size={22} />
+            </div>
+            <div>
+              <div className="stat-number">{aiAgriTelemetry.npkScore}</div>
+              <div className="stat-label">{isTe ? "నత్రజని-భాస్వరం మట్టి స్కోరు" : "N-P-K Soil Quality Score"}</div>
+            </div>
+          </div>
+
+          <div className="stat-card card" style={{ background: "rgba(168, 85, 247, 0.08)", border: "1px solid rgba(168, 85, 247, 0.3)" }}>
+            <div className="stat-icon" style={{ background: "rgba(168, 85, 247, 0.2)", color: "#a855f7" }}>
+              <Award size={22} />
+            </div>
+            <div>
+              <div className="stat-number">{dbtDisbursementData.totalAmountDisbursed}</div>
+              <div className="stat-label">{isTe ? "మొత్తం పథకాల సొమ్ము జమ" : "Total Govt Benefits Disbursed"}</div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Row 1: Agriculture & Mandi Charts */}
+      {/* Row 1: Demographics & Land Cultivation Charts */}
       <div className="grid-2" style={{ marginBottom: "24px" }}>
-        {/* Mandi Price Comparison */}
-        <div className="card">
-          <div className="card-title-group">
-            <div className="card-icon-box" style={{ background: "rgba(22, 163, 74, 0.1)", color: "var(--primary-emerald)" }}>
-              <BarChart3 size={20} />
-            </div>
-            <div>
-              <h3>{isTe ? "సమీప మార్కెట్లలో వరి ధరల పోలిక (Mandi Comparison)" : "Mandi Paddy Price Comparison"}</h3>
-            </div>
-          </div>
-          <div style={{ height: "260px", width: "100%" }}>
-            <Bar data={priceComparisonChartData} options={{ responsive: true, maintainAspectRatio: false }} />
-          </div>
-        </div>
-
-        {/* 7-Day Paddy Trend */}
-        <div className="card">
-          <div className="card-title-group">
-            <div className="card-icon-box" style={{ background: "rgba(217, 119, 6, 0.1)", color: "var(--accent-gold)" }}>
-              <TrendingUp size={20} />
-            </div>
-            <div>
-              <h3>{isTe ? "స్వర్ణ వరి 7-రోజుల ధరల పెరుగుదల ట్రెండ్" : "7-Day Swarna Paddy Price Trend"}</h3>
-            </div>
-          </div>
-          <div style={{ height: "260px", width: "100%" }}>
-            <Line data={paddyTrendChartData} options={{ responsive: true, maintainAspectRatio: false }} />
-          </div>
-        </div>
-      </div>
-
-      {/* Row 2: Canal Water & Schemes Charts */}
-      <div className="grid-2" style={{ marginBottom: "24px" }}>
-        {/* Canal Water Discharge Line Chart */}
-        <div className="card">
-          <div className="card-title-group">
-            <div className="card-icon-box" style={{ background: "rgba(2, 132, 199, 0.1)", color: "var(--sky-blue)" }}>
-              <Waves size={20} />
-            </div>
-            <div>
-              <h3>{isTe ? "గోదావరి బ్యారేజీ ఇన్-ఫ్లో & డెల్టా కాలువల ప్రవాహం" : "Godavari Barrage & Delta Canal Flow Trend"}</h3>
-            </div>
-          </div>
-          <div style={{ height: "260px", width: "100%" }}>
-            <Line data={canalWaterChartData} options={{ responsive: true, maintainAspectRatio: false }} />
-          </div>
-        </div>
-
-        {/* Scheme Beneficiaries Enrollment */}
+        {/* Chart 1: Land Cultivation Doughnut */}
         <div className="card">
           <div className="card-title-group">
             <div className="card-icon-box">
-              <Award size={20} />
+              <Wheat size={22} />
             </div>
             <div>
-              <h3>{isTe ? "నడిపూడి లబ్ధిదారుల పథకాల కవరేజ్ (Scheme Enrolment)" : "Scheme Beneficiary Coverage Bar Chart"}</h3>
+              <h3>{isTe ? "భూమి వినియోగం & సాగు విస్తీర్ణం (ఎకరాలలో)" : "Land Use & Cultivation Breakdown (Acres)"}</h3>
+              <p style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>
+                {isTe ? "మొత్తం నడిపూడి భూభాగ విస్తీర్ణం: 1,420 ఎకరాలు" : "Total Nadipudi Land Area: 1,420 Acres"}
+              </p>
             </div>
           </div>
-          <div style={{ height: "260px", width: "100%" }}>
-            <Bar data={schemeChartData} options={{ responsive: true, maintainAspectRatio: false }} />
+          <div style={{ height: "280px", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <Doughnut
+              data={landChartData}
+              options={{ responsive: true, maintainAspectRatio: false }}
+            />
+          </div>
+        </div>
+
+        {/* Chart 2: Census Age Distribution */}
+        <div className="card">
+          <div className="card-title-group">
+            <div className="card-icon-box" style={{ background: "rgba(2, 132, 199, 0.1)", color: "var(--sky-blue)" }}>
+              <Users size={22} />
+            </div>
+            <div>
+              <h3>{isTe ? "గ్రామ జనాభా & వయో సమూహాల విశ్లేషణ" : "Village Population Age Distribution"}</h3>
+              <p style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>
+                {isTe ? `మొత్తం జనాభా: ${villageDemographics.totalPopulation} | స్త్రీ/పురుష నిష్పత్తి: ${villageDemographics.sexRatio}` : `Total Population: ${villageDemographics.totalPopulation} | Sex Ratio: 982 F / 1000 M`}
+              </p>
+            </div>
+          </div>
+          <div style={{ height: "280px" }}>
+            <Bar
+              data={ageChartData}
+              options={{ responsive: true, maintainAspectRatio: false }}
+            />
           </div>
         </div>
       </div>
 
-      {/* Row 3: Election Ward Demographics Chart */}
-      <div className="card">
+      {/* Row 2: Direct Benefit Transfer (DBT) Scheme Disbursement */}
+      <div className="card" style={{ marginBottom: "24px" }}>
         <div className="card-title-group">
-          <div className="card-icon-box" style={{ background: "rgba(217, 119, 6, 0.1)", color: "var(--accent-gold)" }}>
-            <Vote size={20} />
+          <div className="card-icon-box" style={{ background: "rgba(217, 119, 6, 0.15)", color: "var(--accent-gold)" }}>
+            <Award size={22} />
           </div>
           <div>
-            <h3>{isTe ? "నడిపూడి వార్డుల వారీగా ఓటర్ల జనాభా & పురుష/మహిళా నిష్పత్తి" : "Ward-Wise Elector Demographics & Gender Breakdown"}</h3>
+            <h3>{isTe ? "ఆంధ్రప్రదేశ్ ప్రభుత్వ సంక్షేమ నిధుల పంపిణీ (లక్షల ₹ లలో)" : "AP Govt Welfare DBT Disbursement (₹ in Lakhs)"}</h3>
+            <p style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>
+              {isTe ? `మొత్తం లబ్ధిదారులు: ${dbtDisbursementData.totalBeneficiaryCount} మంది రైతులు & పౌరులు` : `Total Beneficiary Count: 1,870 Nadipudi Villagers`}
+            </p>
           </div>
         </div>
-        <div style={{ height: "280px", width: "100%" }}>
-          <Bar data={wardVoterChartData} options={{ responsive: true, maintainAspectRatio: false }} />
+        <div style={{ height: "300px" }}>
+          <Bar
+            data={dbtChartData}
+            options={{
+              indexAxis: "y",
+              responsive: true,
+              maintainAspectRatio: false,
+            }}
+          />
         </div>
       </div>
     </div>
