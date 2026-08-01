@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Landmark, Calendar, Clock, MapPin, Sparkles, Compass, ExternalLink, ShieldCheck, Heart, Info, ArrowRight, Utensils, Award, ChevronRight, Image as ImageIcon } from "lucide-react";
+import { Landmark, Clock, MapPin, Compass, ExternalLink, Utensils, Award, Image as ImageIcon } from "lucide-react";
 import { templeInfo } from "../data/templeData";
 
 // Import authentic deity photo, Google Maps photo, and AI Gopuram visual

@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { MessageSquare, Sparkles, X, Send, Volume2, VolumeX, Bot, ArrowRight, CornerDownLeft } from "lucide-react";
-import { templeInfo } from "../data/templeData";
+import { Sparkles, X, Send, Volume2, VolumeX, Bot, ArrowRight } from "lucide-react";
 import { mandiPrices } from "../data/agriData";
-import { govtSchemes } from "../data/schemeData";
 import { sachivalayamStaff } from "../data/directoryData";
 
 export default function AiAssistantWidget({ lang, setActiveTab }) {

@@ -2,11 +2,11 @@ import React, { useState, useMemo } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polygon } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { MapPin, Compass, Search, ExternalLink, Info, Layers, Eye, Sparkles, Home, Trees, Waves } from "lucide-react";
+import { MapPin, Compass, Search, ExternalLink, Info, Layers, Sparkles } from "lucide-react";
 import { mapConfig, dioramaLandmarks, surveyLandRecords, nadipudiBoundaryPolygon } from "../data/mapData";
 import map3dImage from "../assets/nadipudi_3d_map.png";
 
-export default function VillageMap({ lang, t }) {
+export default function VillageMap({ lang }) {
   const isTe = lang === "te";
   const [viewMode, setViewMode] = useState("diorama"); // 'diorama' or 'gis'
   const [selectedLandmark, setSelectedLandmark] = useState(dioramaLandmarks[1]);

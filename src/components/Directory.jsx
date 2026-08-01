@@ -1,5 +1,5 @@
 import React from "react";
-import { PhoneCall, ShieldAlert, User, MapPin, CheckCircle, ExternalLink } from "lucide-react";
+import { PhoneCall, ShieldAlert, User, MapPin } from "lucide-react";
 import { sachivalayamStaff, emergencyNumbers } from "../data/directoryData";
 
 export default function Directory({ lang, t }) {

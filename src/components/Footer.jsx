@@ -1,7 +1,7 @@
 import React from "react";
 import { Landmark, Heart } from "lucide-react";
 
-export default function Footer({ lang, t }) {
+export default function Footer({ t }) {
   return (
     <footer className="main-footer">
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", marginBottom: "8px", fontWeight: 700, color: "var(--primary-emerald)" }}>

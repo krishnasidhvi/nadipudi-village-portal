@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Download, Smartphone, X, Share, Apple } from "lucide-react";
+import { Download, Smartphone, X, Apple } from "lucide-react";
 
-export default function AppInstallBanner({ lang, t }) {
+export default function AppInstallBanner({ lang }) {
   const isTe = lang === "te";
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [showBanner, setShowBanner] = useState(false);

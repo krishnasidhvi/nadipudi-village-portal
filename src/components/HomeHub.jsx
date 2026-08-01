@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { Landmark, Sparkles, Wheat, HeartHandshake, Users, ArrowRight, ShieldCheck, MapPin, Calendar, Activity, Eye, Layers, Compass, Image as ImageIcon } from "lucide-react";
+import { Landmark, Sparkles, Wheat, HeartHandshake, Users, ArrowRight, ShieldCheck, MapPin, Calendar, Activity, Layers, Image as ImageIcon } from "lucide-react";
 import { getRelativeFormattedDate } from "../utils/dateUtils";
 import showcase3dImg from "../assets/nadipudi_3d_diorama_showcase.jpg";
+import defaultBgImg from "../assets/nadipudi_full_bg.png";
 
 export default function HomeHub({ lang, t, setActiveTab }) {
   const isTe = lang === "te";
   const currentDate = getRelativeFormattedDate(0, lang);
   const [isBgActive, setIsBgActive] = useState(false);
 
-  // Dynamic Background Toggle Handler
+  // Reliable Dynamic Background Toggle Handler (Works in both Dev & Production)
   const toggleBackground = () => {
     const backdropEl = document.querySelector(".app-backdrop-image");
     if (!backdropEl) return;
@@ -17,7 +18,7 @@ export default function HomeHub({ lang, t, setActiveTab }) {
       backdropEl.style.backgroundImage = `url('${showcase3dImg}')`;
       setIsBgActive(true);
     } else {
-      backdropEl.style.backgroundImage = `url('/src/assets/nadipudi_full_bg.png')`;
+      backdropEl.style.backgroundImage = `url('${defaultBgImg}')`;
       setIsBgActive(false);
     }
   };
@@ -149,8 +150,8 @@ export default function HomeHub({ lang, t, setActiveTab }) {
         </div>
       </div>
 
-      {/* NEW AI FEATURE SPOTLIGHT: 3D Isometric Geographical Model Showcase */}
-      <div className="card" style={{ marginBottom: "28px", background: "rgba(0, 0, 0, 0.55)", border: "1.5px solid rgba(234, 88, 12, 0.45)" }}>
+      {/* AI FEATURE SPOTLIGHT: 3D Isometric Geographical Model Showcase (Seamlessly Merged) */}
+      <div className="card" style={{ marginBottom: "28px", background: "rgba(0, 0, 0, 0.45)", border: "1.5px solid rgba(234, 88, 12, 0.45)" }}>
         <div className="card-title-group" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "14px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
             <div className="card-icon-box" style={{ background: "rgba(234, 88, 12, 0.25)", color: "var(--divine-saffron)" }}>
@@ -185,12 +186,20 @@ export default function HomeHub({ lang, t, setActiveTab }) {
           </button>
         </div>
 
-        {/* 3D Diorama Image Container */}
-        <div style={{ margin: "18px 0", borderRadius: "16px", overflow: "hidden", border: "2px solid rgba(234, 88, 12, 0.4)", background: "#000", position: "relative" }}>
+        {/* Seamless 3D Diorama Image Frame (No Black Bars on Either Side) */}
+        <div style={{ margin: "18px 0", borderRadius: "16px", overflow: "hidden", background: "transparent", position: "relative" }}>
           <img
             src={showcase3dImg}
             alt="Nadipudi 3D Diorama Map Showcase"
-            style={{ width: "100%", maxHeight: "560px", objectFit: "contain", display: "block", margin: "0 auto" }}
+            style={{
+              width: "100%",
+              height: "auto",
+              maxHeight: "620px",
+              objectFit: "cover",
+              display: "block",
+              borderRadius: "14px",
+              boxShadow: "0 12px 36px rgba(0,0,0,0.6)"
+            }}
           />
         </div>
 

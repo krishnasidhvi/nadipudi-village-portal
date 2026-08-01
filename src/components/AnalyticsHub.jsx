@@ -1,7 +1,7 @@
 import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title, PointElement, LineElement } from "chart.js";
-import { Doughnut, Bar, Line } from "react-chartjs-2";
-import { Cpu, Users, Wheat, Award, Activity, Sparkles, TrendingUp, Droplets } from "lucide-react";
+import { Doughnut, Bar } from "react-chartjs-2";
+import { Cpu, Users, Wheat, Award, Sparkles, Droplets } from "lucide-react";
 import { villageDemographics, aiAgriTelemetry, dbtDisbursementData } from "../data/analyticsData";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title, PointElement, LineElement);

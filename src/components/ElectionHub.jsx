@@ -1,5 +1,5 @@
 import React from "react";
-import { Vote, ExternalLink, MapPin, FileText, Bell } from "lucide-react";
+import { ExternalLink, MapPin, FileText, Bell } from "lucide-react";
 import { voterPortals, nadipudiBooths, electionUpdates } from "../data/electionData";
 
 export default function ElectionHub({ lang, t }) {
