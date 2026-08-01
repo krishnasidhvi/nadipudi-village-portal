@@ -92,11 +92,11 @@ export default function VillageMap({ lang }) {
             </div>
 
             {/* 3D Diorama Display Canvas */}
-            <div style={{ position: "relative", width: "100%", height: "540px", borderRadius: "16px", overflow: "hidden", border: "2px solid rgba(74, 222, 128, 0.4)", background: "#ffffff" }}>
+            <div style={{ position: "relative", width: "100%", height: "auto", minHeight: "380px", borderRadius: "16px", overflow: "hidden", border: "2px solid rgba(74, 222, 128, 0.4)", background: "#06130b", padding: "4px" }}>
               <img
                 src={map3dImage}
                 alt="Nadipudi 3D Isometric Paper Diorama Map"
-                style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+                style={{ width: "100%", height: "auto", objectFit: "contain", display: "block", borderRadius: "12px" }}
               />
 
               {/* Interactive Diorama Hotspot Pins matching Callout Pins */}

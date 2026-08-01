@@ -186,18 +186,17 @@ export default function HomeHub({ lang, t, setActiveTab }) {
           </button>
         </div>
 
-        {/* Seamless 3D Diorama Image Frame (No Black Bars on Either Side) */}
-        <div style={{ margin: "18px 0", borderRadius: "16px", overflow: "hidden", background: "transparent", position: "relative" }}>
+        {/* Full Uncropped 3D Diorama Image Frame */}
+        <div style={{ margin: "18px 0", borderRadius: "16px", overflow: "hidden", background: "rgba(0, 0, 0, 0.5)", position: "relative", border: "1.5px solid rgba(234, 88, 12, 0.35)", padding: "4px" }}>
           <img
             src={showcase3dImg}
             alt="Nadipudi 3D Diorama Map Showcase"
             style={{
               width: "100%",
               height: "auto",
-              maxHeight: "620px",
-              objectFit: "cover",
+              objectFit: "contain",
               display: "block",
-              borderRadius: "14px",
+              borderRadius: "12px",
               boxShadow: "0 12px 36px rgba(0,0,0,0.6)"
             }}
           />
