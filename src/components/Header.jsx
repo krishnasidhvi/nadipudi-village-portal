@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Globe, Moon, Sun, ShieldAlert, MapPin, Landmark, RefreshCw, Clock } from "lucide-react";
+import { Globe, ShieldAlert, MapPin, Landmark, RefreshCw, Clock } from "lucide-react";
 import { getLiveTimeString, getRelativeFormattedDate } from "../utils/dateUtils";
 
-export default function Header({ lang, setLang, theme, setTheme, t }) {
+export default function Header({ lang, setLang, t }) {
   const [liveTime, setLiveTime] = useState(getLiveTimeString(lang));
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -80,15 +80,6 @@ export default function Header({ lang, setLang, theme, setTheme, t }) {
             >
               <Globe size={16} />
               <span>{t.languageSwitch}</span>
-            </button>
-
-            {/* Dark/Light Theme Toggle */}
-            <button
-              className="btn-toggle"
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              title="Toggle Theme Mode"
-            >
-              {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
             </button>
           </div>
         </div>

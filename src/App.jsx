@@ -17,15 +17,14 @@ import { translations } from "./utils/translations";
 
 export default function App() {
   const [lang, setLang] = useState("te");
-  const [theme, setTheme] = useState("dark");
   const [activeTab, setActiveTab] = useState("home");
   const [initialAction, setInitialAction] = useState(null);
 
   const t = translations[lang];
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
+    document.documentElement.setAttribute("data-theme", "dark");
+  }, []);
 
   // Support direct deep linking (e.g. ?tab=temple&action=upload when scanned from phone QR)
   useEffect(() => {
@@ -51,7 +50,7 @@ export default function App() {
 
       <div className="app-container">
         {/* Top Header & Emergency Ticker */}
-        <Header lang={lang} setLang={setLang} theme={theme} setTheme={setTheme} t={t} />
+        <Header lang={lang} setLang={setLang} t={t} />
 
         {/* Mobile Android PWA Install Banner */}
         <AppInstallBanner lang={lang} t={t} />
