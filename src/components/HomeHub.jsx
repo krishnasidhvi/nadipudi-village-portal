@@ -1,27 +1,10 @@
-import React, { useState } from "react";
-import { Landmark, Sparkles, Wheat, HeartHandshake, Users, ArrowRight, ShieldCheck, MapPin, Calendar, Activity, Layers, Image as ImageIcon } from "lucide-react";
+import React from "react";
+import { Landmark, Sparkles, Wheat, HeartHandshake, Users, ArrowRight, ShieldCheck, MapPin, Calendar, Activity } from "lucide-react";
 import { getRelativeFormattedDate } from "../utils/dateUtils";
-import showcase3dImg from "../assets/nadipudi_3d_diorama_showcase.jpg";
-import defaultBgImg from "../assets/nadipudi_full_bg.png";
 
 export default function HomeHub({ lang, t, setActiveTab }) {
   const isTe = lang === "te";
   const currentDate = getRelativeFormattedDate(0, lang);
-  const [isBgActive, setIsBgActive] = useState(false);
-
-  // Reliable Dynamic Background Toggle Handler (Works in both Dev & Production)
-  const toggleBackground = () => {
-    const backdropEl = document.querySelector(".app-backdrop-image");
-    if (!backdropEl) return;
-
-    if (!isBgActive) {
-      backdropEl.style.backgroundImage = `url('${showcase3dImg}')`;
-      setIsBgActive(true);
-    } else {
-      backdropEl.style.backgroundImage = `url('${defaultBgImg}')`;
-      setIsBgActive(false);
-    }
-  };
 
   return (
     <div className="home-hub-container">
@@ -150,82 +133,6 @@ export default function HomeHub({ lang, t, setActiveTab }) {
         </div>
       </div>
 
-      {/* AI FEATURE SPOTLIGHT: 3D Isometric Geographical Model Showcase (Seamlessly Merged) */}
-      <div className="card" style={{ marginBottom: "28px", background: "rgba(0, 0, 0, 0.45)", border: "1.5px solid rgba(234, 88, 12, 0.45)" }}>
-        <div className="card-title-group" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "14px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <div className="card-icon-box" style={{ background: "rgba(234, 88, 12, 0.25)", color: "var(--divine-saffron)" }}>
-              <ImageIcon size={22} />
-            </div>
-            <div>
-              <h3 style={{ color: "var(--divine-saffron)", fontSize: "1.3rem" }}>
-                {isTe ? "నడిపూడి గ్రామీణ 3D ఐసోమెట్రిక్ నమూనా & భౌగోళిక విస్తరణ" : "Nadipudi 3D Geographical Topography Diorama Showcase"}
-              </h3>
-              <p style={{ fontSize: "0.85rem", color: "#cbd5e1" }}>
-                {isTe ? "శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి దేవాలయం (Centre of Attraction), వసిష్ఠ గోదావరి, పుష్కర ఘాట్ & స్వర్ణ పొలాలు" : "Sri Subramanyeswara Swamy Temple (Centre of Attraction), Godavari River, Pushkar Ghat & Paddy Ayacut"}
-              </p>
-            </div>
-          </div>
-
-          {/* Interactive Background Blending Toggle */}
-          <button
-            className="btn-primary"
-            onClick={toggleBackground}
-            style={{
-              background: isBgActive ? "linear-gradient(135deg, #0284c7, #38bdf8)" : "linear-gradient(135deg, #ea580c, #f97316)",
-              fontSize: "0.88rem",
-              padding: "10px 18px"
-            }}
-          >
-            <Layers size={16} />
-            <span>
-              {isBgActive
-                ? (isTe ? "🔄 పాత బ్యాక్‌గ్రౌండ్‌కి మార్చండి" : "Revert Original Background")
-                : (isTe ? "🌄 మెయిన్ బ్యాక్‌గ్రౌండ్‌గా మార్చండి" : "Merge as Website Background")}
-            </span>
-          </button>
-        </div>
-
-        {/* Full Uncropped 3D Diorama Image Frame */}
-        <div style={{ margin: "18px 0", borderRadius: "16px", overflow: "hidden", background: "rgba(0, 0, 0, 0.5)", position: "relative", border: "1.5px solid rgba(234, 88, 12, 0.35)", padding: "4px" }}>
-          <img
-            src={showcase3dImg}
-            alt="Nadipudi 3D Diorama Map Showcase"
-            style={{
-              width: "100%",
-              height: "auto",
-              objectFit: "contain",
-              display: "block",
-              borderRadius: "12px",
-              boxShadow: "0 12px 36px rgba(0,0,0,0.6)"
-            }}
-          />
-        </div>
-
-        {/* Key Landmarks Tags Grid */}
-        <div className="grid-3" style={{ gap: "12px", marginTop: "16px" }}>
-          <div style={{ background: "rgba(234, 88, 12, 0.15)", padding: "12px 14px", borderRadius: "10px", borderLeft: "4px solid #ea580c" }}>
-            <strong style={{ color: "#fde047", fontSize: "0.9rem" }}>🛕 Sri Subramanyeswara Temple:</strong>
-            <p style={{ fontSize: "0.82rem", color: "#cbd5e1", marginTop: "2px" }}>
-              {isTe ? "గ్రామ నడిబొడ్డున పవిత్ర కోనేరు ఒడ్డున కొలువై ఉన్న ప్రధాన క్షేత్రం (Centre of Attraction)." : "Primary Swayambhu shrine located beside the sacred temple pond."}
-            </p>
-          </div>
-
-          <div style={{ background: "rgba(2, 132, 199, 0.15)", padding: "12px 14px", borderRadius: "10px", borderLeft: "4px solid #38bdf8" }}>
-            <strong style={{ color: "#38bdf8", fontSize: "0.9rem" }}>🌊 Godavari & Pushkar Ghat:</strong>
-            <p style={{ fontSize: "0.82rem", color: "#cbd5e1", marginTop: "2px" }}>
-              {isTe ? "వసిష్ఠ గోదావరి నది, పాములూరు కాలువ వంతెన & పుష్కర స్నాన ఘాట్." : "Vasishtha Godavari river bank, Pamuleru canal bridge & Pushkar Ghat."}
-            </p>
-          </div>
-
-          <div style={{ background: "rgba(34, 197, 94, 0.15)", padding: "12px 14px", borderRadius: "10px", borderLeft: "4px solid #4ade80" }}>
-            <strong style={{ color: "#4ade80", fontSize: "0.9rem" }}>🌾 Fertile Paddy Fields & Culture:</strong>
-            <p style={{ fontSize: "0.82rem", color: "#cbd5e1", marginTop: "2px" }}>
-              {isTe ? "పచ్చని స్వర్ణ వరి పొలాలు, వేంకటేశ్వర స్వామి & మావుళ్ళమ్మ ఆలయాలు, పల్లె జీవనం." : "Lush Swarna paddy fields, Venkateswara & Mavullamma shrines, local life."}
-            </p>
-          </div>
-        </div>
-      </div>
 
       {/* Main Attraction Spotlight: Sri Subramanyeswara Swamy Temple */}
       <div className="temple-spotlight-card card" style={{ marginBottom: "28px" }}>
