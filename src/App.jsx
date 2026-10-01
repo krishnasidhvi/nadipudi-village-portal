@@ -19,12 +19,30 @@ export default function App() {
   const [lang, setLang] = useState("te");
   const [theme, setTheme] = useState("dark");
   const [activeTab, setActiveTab] = useState("home");
+  const [initialAction, setInitialAction] = useState(null);
 
   const t = translations[lang];
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
+
+  // Support direct deep linking (e.g. ?tab=temple&action=upload when scanned from phone QR)
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get("tab");
+      const actionParam = params.get("action");
+      if (tabParam) {
+        setActiveTab(tabParam);
+      }
+      if (actionParam) {
+        setInitialAction(actionParam);
+      }
+    } catch (e) {
+      console.warn("Could not parse URL query parameters:", e);
+    }
+  }, []);
 
   return (
     <>
@@ -44,7 +62,7 @@ export default function App() {
         {/* Dynamic Tab Content Routing */}
         <main>
           {activeTab === "home" && <HomeHub lang={lang} t={t} setActiveTab={setActiveTab} />}
-          {activeTab === "temple" && <TempleHub lang={lang} t={t} />}
+          {activeTab === "temple" && <TempleHub lang={lang} t={t} initialAction={initialAction} />}
           {activeTab === "agri" && <AgriHub lang={lang} t={t} />}
           {activeTab === "schemes" && <SchemesHub lang={lang} t={t} />}
           {activeTab === "notices" && <NoticeBoard lang={lang} t={t} />}
