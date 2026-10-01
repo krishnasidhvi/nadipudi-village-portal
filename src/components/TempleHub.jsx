@@ -25,9 +25,8 @@ import TempleMediaQRModal from "./TempleMediaQRModal";
 import TempleMediaUploadModal from "./TempleMediaUploadModal";
 import TempleMediaLightbox from "./TempleMediaLightbox";
 
-// Import authentic deity photo, Google Maps photo, and AI Gopuram visual
+// Import authentic deity photo and Google Maps photo
 import godDeityImg from "../assets/temple_god_deity.jpg";
-import aiGopuramImg from "../assets/temple_gopuram_ai.png";
 import googleMapsPhotoImg from "../assets/temple_google_maps_photo.jpg";
 
 export default function TempleHub({ lang, t, initialAction }) {
@@ -52,16 +51,6 @@ export default function TempleHub({ lang, t, initialAction }) {
       badgeEn: "Authentic Shrine Darshan",
       descTe: "నడిపూడి గ్రామంలో స్వయంభూవుగా వెలసిన శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి వారు (శ్రీ వల్లి, దేవసేన సమేతంగా) సర్ప చత్రాకార ప్రభావళి మరియు స్వర్ణాభరణ దివ్యాభిషేక నిజరూప దర్శనం.",
       descEn: "Authentic shrine photograph of Lord Subramanyeswara Swamy along with Valli and Devasena adorned with golden ornaments and flower garlands at Nadipudi."
-    },
-    {
-      id: "g2",
-      titleTe: "శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి ఆలయ శోభాయమాన రాజగోపురం (AI 3D రూపకల్పన)",
-      titleEn: "Sri Subramanyeswara Temple Gopuram (AI Visualisation)",
-      img: aiGopuramImg,
-      badgeTe: "రాజగోపురం AI నమూనా",
-      badgeEn: "AI Temple Rajagopuram",
-      descTe: "నడిపూడి శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి వారి ప్రవేశ ద్వార దక్షిణ భారత ద్రావిడ శిల్పకళా శోభిత రాజగోపురం, స్వర్ణ కలశం మరియు ప్రాంగణ దృశ్యం.",
-      descEn: "AI generated Dravidian architectural Gopuram tower visualization of Nadipudi Sri Subramanyeswara temple with golden Kalasam spires."
     },
     {
       id: "g3",
@@ -200,10 +189,10 @@ export default function TempleHub({ lang, t, initialAction }) {
             </div>
             <div>
               <h3 style={{ color: "var(--divine-saffron)" }}>
-                {isTe ? "నడిపూడి సుబ్రహ్మణ్యేశ్వర స్వామి మూలవిరాట్ & రాజగోపురం చిత్రమాలిక" : "Nadipudi Shrine Authentic Photos & AI Gopuram Gallery"}
+                {isTe ? "నడిపూడి సుబ్రహ్మణ్యేశ్వర స్వామి మూలవిరాట్ & క్షేత్ర దర్శన చిత్రమాలిక" : "Nadipudi Shrine Authentic Deity Darshan & Pilgrim Photos"}
               </h3>
               <p style={{ fontSize: "0.85rem", color: "#cbd5e1" }}>
-                {isTe ? "చిత్రాలు ఏమాత్రం కత్తిరించబడకుండా పూర్తి పరిమాణంలో ప్రదర్శించబడుతున్నాయి" : "Full uncropped view of authentic shrine photo, AI temple gopuram, and Google Maps photo"}
+                {isTe ? "చిత్రాలు ఏమాత్రం కత్తిరించబడకుండా పూర్తి సహజ పరిమాణంలో ప్రదర్శించబడుతున్నాయి" : "Full uncropped view of authentic shrine deity photo and Google Maps photo"}
               </p>
             </div>
           </div>
@@ -284,7 +273,7 @@ export default function TempleHub({ lang, t, initialAction }) {
         </div>
 
         {/* Thumbnail Selector Row (UNCROPPED Thumbnails) */}
-        <div className="grid-3" style={{ gap: "14px" }}>
+        <div className="grid-2" style={{ gap: "14px" }}>
           {galleryItems.map((item) => (
             <div
               key={item.id}
