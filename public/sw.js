@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nadipudi-portal-v2';
+const CACHE_NAME = 'nadipudi-portal-v3';
 
 self.addEventListener('install', (_event) => {
   self.skipWaiting();
@@ -25,6 +25,11 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(event.request).catch(() => caches.match(event.request))
     );
+    return;
+  }
+
+  // Only same-origin GETs are cached; live API calls (weather) always go to the network.
+  if (event.request.method !== 'GET' || new URL(event.request.url).origin !== self.location.origin) {
     return;
   }
 

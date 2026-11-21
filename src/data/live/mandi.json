@@ -1,0 +1,123 @@
+{
+  "fetchedAt": "2026-11-21T21:43:31.624Z",
+  "source": "Agmarknet daily mandi prices, via data.gov.in",
+  "sourceUrl": "https://www.data.gov.in/resource/current-daily-price-various-commodities-various-markets-mandi",
+  "unit": "INR per quintal",
+  "truncated": false,
+  "records": [
+    {
+      "market": "Achanta APMC",
+      "commodity": "Paddy(Common)",
+      "variety": "NO. 2716",
+      "grade": "Local",
+      "date": "2026-11-21",
+      "min": 2369,
+      "max": 2400,
+      "modal": 2375
+    },
+    {
+      "market": "Attili APMC",
+      "commodity": "Paddy(Common)",
+      "variety": "Paddy",
+      "grade": "Local",
+      "date": "2026-11-21",
+      "min": 2369,
+      "max": 2389,
+      "modal": 2369
+    },
+    {
+      "market": "Narsapuram APMC",
+      "commodity": "Paddy(Common)",
+      "variety": "MTU-1001",
+      "grade": "Local",
+      "date": "2026-11-21",
+      "min": 2445,
+      "max": 2445,
+      "modal": 2445
+    },
+    {
+      "market": "Palakole APMC",
+      "commodity": "Paddy(Common)",
+      "variety": "Paddy",
+      "grade": "Local",
+      "date": "2026-11-21",
+      "min": 2450,
+      "max": 2450,
+      "modal": 2450
+    },
+    {
+      "market": "Penugonda APMC",
+      "commodity": "Paddy(Common)",
+      "variety": "MTU-1001",
+      "grade": "Local",
+      "date": "2026-11-21",
+      "min": 2369,
+      "max": 2380,
+      "modal": 2370
+    },
+    {
+      "market": "Tadepalligudem APMC",
+      "commodity": "Paddy(Common)",
+      "variety": "Paddy",
+      "grade": "FAQ",
+      "date": "2026-11-21",
+      "min": 2450,
+      "max": 2450,
+      "modal": 2450
+    },
+    {
+      "market": "Undi APMC",
+      "commodity": "Paddy(Common)",
+      "variety": "MTU-1001",
+      "grade": "Local",
+      "date": "2026-11-21",
+      "min": 2369,
+      "max": 2369,
+      "modal": 2369
+    }
+  ],
+  "history": [
+    {
+      "date": "2026-11-21",
+      "market": "Achanta APMC",
+      "commodity": "Paddy(Common)",
+      "modal": 2375
+    },
+    {
+      "date": "2026-11-21",
+      "market": "Attili APMC",
+      "commodity": "Paddy(Common)",
+      "modal": 2369
+    },
+    {
+      "date": "2026-11-21",
+      "market": "Narsapuram APMC",
+      "commodity": "Paddy(Common)",
+      "modal": 2445
+    },
+    {
+      "date": "2026-11-21",
+      "market": "Palakole APMC",
+      "commodity": "Paddy(Common)",
+      "modal": 2450
+    },
+    {
+      "date": "2026-11-21",
+      "market": "Penugonda APMC",
+      "commodity": "Paddy(Common)",
+      "modal": 2370
+    },
+    {
+      "date": "2026-11-21",
+      "market": "Tadepalligudem APMC",
+      "commodity": "Paddy(Common)",
+      "modal": 2450
+    },
+    {
+      "date": "2026-11-21",
+      "market": "Undi APMC",
+      "commodity": "Paddy(Common)",
+      "modal": 2369
+    }
+  ]
+}

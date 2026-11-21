@@ -1,7 +1,16 @@
 import React from "react";
 import { Landmark, Heart } from "lucide-react";
 
-export default function Footer({ t }) {
+const dataCredits = [
+  { label: "Open-Meteo (weather, CC BY 4.0)", url: "https://open-meteo.com/" },
+  { label: "Agmarknet / data.gov.in (mandi prices)", url: "https://www.data.gov.in/" },
+  { label: "Central Water Commission (river level)", url: "https://ffs.india-water.gov.in/" },
+  { label: "NDMA SACHET (alerts)", url: "https://sachet.ndma.gov.in/" },
+  { label: "Census of India 2011", url: "https://censusindia.gov.in/" },
+];
+
+export default function Footer({ lang, t }) {
+  const isTe = lang === "te";
   return (
     <footer className="main-footer">
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", marginBottom: "8px", fontWeight: 700, color: "var(--primary-emerald)" }}>
@@ -12,6 +21,18 @@ export default function Footer({ t }) {
       <p style={{ maxWidth: "720px", margin: "0 auto 12px", fontSize: "0.85rem" }}>
         <strong>{t.disclaimerTitle}:</strong> {t.disclaimerText}
       </p>
+
+      <p style={{ fontSize: "0.8rem", marginBottom: "6px", opacity: 0.85 }}>{isTe ? "సమాచార మూలాలు" : "Data sources"}</p>
+      <div className="footer-links" style={{ marginBottom: "14px" }}>
+        {dataCredits.map((credit, i) => (
+          <React.Fragment key={credit.url}>
+            {i > 0 && <span>•</span>}
+            <a href={credit.url} target="_blank" rel="noopener noreferrer">
+              {credit.label}
+            </a>
+          </React.Fragment>
+        ))}
+      </div>
 
       <div className="footer-links">
         <a href="https://ap.gov.in/" target="_blank" rel="noopener noreferrer">
@@ -28,10 +49,6 @@ export default function Footer({ t }) {
         <span>•</span>
         <a href="https://voters.eci.gov.in/" target="_blank" rel="noopener noreferrer">
           ECI Voters Portal
-        </a>
-        <span>•</span>
-        <a href="https://agmarknet.gov.in/" target="_blank" rel="noopener noreferrer">
-          Agmarknet Mandi Prices
         </a>
       </div>
 

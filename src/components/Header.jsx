@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Globe, ShieldAlert, MapPin, Landmark, RefreshCw, Clock } from "lucide-react";
+import { Globe, ShieldAlert, MapPin, Users, Clock } from "lucide-react";
 import { getLiveTimeString, getRelativeFormattedDate } from "../utils/dateUtils";
 
 export default function Header({ lang, setLang, t }) {
   const [liveTime, setLiveTime] = useState(getLiveTimeString(lang));
-  const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -13,18 +12,11 @@ export default function Header({ lang, setLang, t }) {
     return () => clearInterval(timer);
   }, [lang]);
 
-  const handleManualRefresh = () => {
-    setIsRefreshing(true);
-    setTimeout(() => {
-      setIsRefreshing(false);
-    }, 800);
-  };
-
   const currentDate = getRelativeFormattedDate(0, lang);
 
   return (
     <>
-      {/* Top Emergency & Real-Time Marquee */}
+      {/* Emergency numbers bar */}
       <div className="emergency-topbar">
         <div className="pulse-dot"></div>
         <ShieldAlert size={16} />
@@ -38,12 +30,8 @@ export default function Header({ lang, setLang, t }) {
           <div className="header-title-group">
             <div className="header-badge-row">
               <div className="brand-badge">
-                <Landmark size={14} />
-                <span>ఆంధ్రప్రదేశ్ ప్రభుత్వం | Govt of AP</span>
-              </div>
-              <div className="live-sync-badge flex items-center gap-1">
-                <span className="live-dot-green"></span>
-                <span>{t.liveSyncBadge}</span>
+                <Users size={14} />
+                <span>{t.communityBadge}</span>
               </div>
             </div>
 
@@ -55,22 +43,13 @@ export default function Header({ lang, setLang, t }) {
           </div>
 
           <div className="header-actions">
-            {/* Live Clock & Date Badge */}
+            {/* Clock & date */}
             <div className="header-clock-box">
               <div className="clock-date">{currentDate}</div>
               <div className="clock-time flex items-center gap-1">
                 <Clock size={14} /> {liveTime}
               </div>
             </div>
-
-            {/* Refresh Data Button */}
-            <button
-              className={`btn-toggle ${isRefreshing ? "spin" : ""}`}
-              onClick={handleManualRefresh}
-              title={t.refreshTooltip}
-            >
-              <RefreshCw size={16} className={isRefreshing ? "animate-spin" : ""} />
-            </button>
 
             {/* Language Switcher */}
             <button

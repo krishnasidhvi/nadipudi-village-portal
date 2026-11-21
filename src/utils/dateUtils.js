@@ -31,18 +31,6 @@ export function getRelativeFormattedDate(offsetDays = 0, lang = "te") {
 }
 
 /**
- * Returns numeric DD-MM-YYYY format
- */
-export function getNumericDate(offsetDays = 0) {
-  const d = new Date();
-  d.setDate(d.getDate() - offsetDays);
-  const day = String(d.getDate()).padStart(2, "0");
-  const month = String(d.getMonth() + 1).padStart(2, "0");
-  const year = d.getFullYear();
-  return `${day}-${month}-${year}`;
-}
-
-/**
  * Returns live current time string HH:MM:SS AM/PM
  */
 export function getLiveTimeString(lang = "te") {

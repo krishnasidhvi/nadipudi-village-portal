@@ -2,23 +2,14 @@ import React, { useState, useMemo } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polygon } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { MapPin, Compass, Search, ExternalLink, Info, Layers, Sparkles } from "lucide-react";
-import { mapConfig, dioramaLandmarks, surveyLandRecords, nadipudiBoundaryPolygon } from "../data/mapData";
+import { MapPin, Compass, ExternalLink, Layers, Sparkles } from "lucide-react";
+import { mapConfig, dioramaLandmarks, nadipudiBoundaryPolygon } from "../data/mapData";
 import map3dImage from "../assets/nadipudi_3d_map.png";
 
 export default function VillageMap({ lang }) {
   const isTe = lang === "te";
   const [viewMode, setViewMode] = useState("diorama"); // 'diorama' or 'gis'
   const [selectedLandmark, setSelectedLandmark] = useState(dioramaLandmarks[1]);
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const filteredRecords = surveyLandRecords.filter(
-    (rec) =>
-      rec.surveyNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      rec.ownerTe.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      rec.ownerEn.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      rec.classificationTe.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   // Leaflet custom marker icon
   const defaultCustomIcon = useMemo(() => {
@@ -119,7 +110,7 @@ export default function VillageMap({ lang }) {
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "12px" }}>
                   <div>
                     <div style={{ fontSize: "0.78rem", fontWeight: "700", color: "#4ade80", textTransform: "uppercase" }}>
-                      {selectedLandmark.icon} {isTe ? selectedLandmark.categoryTe : selectedLandmark.categoryEn} • {selectedLandmark.surveyNo}
+                      {selectedLandmark.icon} {isTe ? selectedLandmark.categoryTe : selectedLandmark.categoryEn}
                     </div>
                     <h3 style={{ fontSize: "1.35rem", color: "#ffffff", marginTop: "4px" }}>
                       {isTe ? selectedLandmark.nameTe : selectedLandmark.nameEn}
@@ -184,7 +175,7 @@ export default function VillageMap({ lang }) {
                     <div style={{ color: "#0f172a", fontSize: "0.85rem" }}>
                       <strong>{isTe ? point.nameTe : point.nameEn}</strong>
                       <br />
-                      {point.surveyNo} • {isTe ? point.categoryTe : point.categoryEn}
+                      {isTe ? point.categoryTe : point.categoryEn}
                     </div>
                   </Popup>
                 </Marker>
@@ -193,51 +184,6 @@ export default function VillageMap({ lang }) {
           </div>
         </div>
       )}
-
-      {/* Revenue Land Records & Boundaries Table */}
-      <div className="card">
-        <div className="card-title-group">
-          <div className="card-icon-box">
-            <Info size={22} />
-          </div>
-          <h3>{isTe ? "నడిపూడి భూమి వర్గీకరణ & సర్వే రికార్డులు" : "Revenue Land Classification & Survey Records"}</h3>
-        </div>
-
-        {/* Search Input */}
-        <div className="search-box-container">
-          <Search className="search-icon-inside" size={18} />
-          <input
-            type="text"
-            className="search-input"
-            placeholder={isTe ? "సర్వే నంబరు లేదా యజమాని పేరు నమోదు చేయండి..." : "Search survey number or landowner..."}
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-
-        <div className="table-responsive">
-          <table className="custom-table">
-            <thead>
-              <tr>
-                <th>{isTe ? "సర్వే నంబరు" : "Survey No."}</th>
-                <th>{isTe ? "భూమి వర్గీకరణ" : "Land Classification"}</th>
-                <th>{isTe ? "విస్తీర్ణం (ఎకరాలు)" : "Extent (Acres)"}</th>
-                <th>{isTe ? "యజమాని / సంస్థ" : "Owner / Authority"}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredRecords.map((row, idx) => (
-                <tr key={idx}>
-                  <td><span className="price-badge">{row.surveyNo}</span></td>
-                  <td>{isTe ? row.classificationTe : row.classificationEn}</td>
-                  <td>{row.acres} Acres</td>
-                  <td style={{ fontWeight: "600" }}>{isTe ? row.ownerTe : row.ownerEn}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
     </div>
   );
 }

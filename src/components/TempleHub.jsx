@@ -26,8 +26,8 @@ import TempleMediaUploadModal from "./TempleMediaUploadModal";
 import TempleMediaLightbox from "./TempleMediaLightbox";
 
 // Import authentic deity photo and Google Maps photo
-import godDeityImg from "../assets/temple_god_deity.jpg";
-import googleMapsPhotoImg from "../assets/temple_google_maps_photo.jpg";
+import godDeityImg from "../assets/temple_god_deity.webp";
+import googleMapsPhotoImg from "../assets/temple_google_maps_photo.webp";
 
 export default function TempleHub({ lang, t, initialAction }) {
   const isTe = lang === "te";

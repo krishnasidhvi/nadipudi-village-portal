@@ -1,15 +1,18 @@
-name: Daily Automated Data Refresh for Nadipudi Portal
+name: Refresh live data (mandi prices, river level, alerts)
 
 on:
   schedule:
-    # Runs every morning at 04:00 UTC (9:30 AM IST)
-    - cron: '0 4 * * *'
-  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+    # 02:30 UTC (8:00 AM IST) and 12:30 UTC (6:00 PM IST)
+    - cron: '30 2,12 * * *'
+  workflow_dispatch: # Allows manual trigger from the GitHub Actions tab
 
 permissions:
-  contents: write
-  pages: write
-  id-token: write
+  contents: write # commit the refreshed JSON
+  actions: write  # start the deploy workflow afterwards
+
+concurrency:
+  group: live-data
+  cancel-in-progress: false
 
 jobs:
   update-data:
@@ -23,17 +26,29 @@ jobs:
         with:
           node-version: 20
 
-      - name: Run Daily Data Refresh Script
-        run: node scripts/updateDailyData.js
+      # Fetches Agmarknet prices, the CWC Godavari level and NDMA alerts into
+      # src/data/live/. A source that fails keeps its previous file, and the
+      # site then marks that reading as out of date.
+      - name: Fetch live data
+        env:
+          # Optional: free personal key from data.gov.in. Without it the script
+          # uses the public sample key, which is rate-limited and often refused.
+          DATA_GOV_IN_API_KEY: ${{ secrets.DATA_GOV_IN_API_KEY }}
+        run: node scripts/fetchLiveData.js
 
-      - name: Commit and Push Changes if Updated
+      - name: Commit and deploy if data changed
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/data/agriData.js
-          if ! git diff --staged --quiet; then
-            git commit -m "Automated Daily Data Refresh for Nadipudi Portal [$(date +'%Y-%m-%d')]"
-            git push origin main
-          else
-            echo "No data changes detected today."
+          git add src/data/live
+          if git diff --staged --quiet; then
+            echo "No data changes."
+            exit 0
           fi
+          git commit -m "Refresh live data [$(date -u +'%Y-%m-%d %H:%M') UTC]"
+          git push origin HEAD:main
+          # A push made with the workflow token does not trigger other
+          # workflows, so start the deploy explicitly.
+          gh workflow run deploy.yml --ref main

@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Sparkles, X, Send, Volume2, VolumeX, Bot, ArrowRight } from "lucide-react";
-import { mandiPrices } from "../data/agriData";
-import { sachivalayamStaff } from "../data/directoryData";
+import { HelpCircle, X, Send, Volume2, VolumeX, ArrowRight } from "lucide-react";
+import { penugondaPaddy, river, formatDate, formatDateTime, rupees } from "../utils/liveData";
 
+// A simple keyword-matched help guide (not an AI model). It answers only from
+// data the site actually holds, and otherwise points to the right page.
 export default function AiAssistantWidget({ lang, setActiveTab }) {
   const isTe = lang === "te";
   const [isOpen, setIsOpen] = useState(false);
@@ -11,8 +12,8 @@ export default function AiAssistantWidget({ lang, setActiveTab }) {
   const messagesEndRef = useRef(null);
 
   const initialGreeting = isTe
-    ? "నమస్కారం! నేను నడిపూడి గ్రామీణ డిజిటల్ AI సహాయకుడిని. శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి వారి దర్శనం, ధాన్యం మండి ధరలు, సచివాలయ సేవలు మరియు ప్రభుత్వ పథకాల గురించిన ఏ ప్రశ్లనైనా నన్ను అడగండి."
-    : "Namaste! I am the Nadipudi Village AI Digital Assistant. Ask me anything about Temple Darshan, Paddy Mandi Prices, Secretariat Officials, or AP Govt Schemes!";
+    ? "నమస్కారం! ఇది నడిపూడి వేదిక త్వరిత సహాయం. ఆలయం, ధాన్యం ధరలు, అత్యవసర నంబర్లు లేదా ప్రభుత్వ పథకాల గురించి అడగండి — సరైన పేజీకి దారి చూపిస్తాను."
+    : "Namaste! This is the Nadipudi portal quick help. Ask about the temple, paddy prices, emergency numbers or government schemes and I will point you to the right page.";
 
   const [chatHistory, setChatHistory] = useState([
     {
@@ -26,15 +27,15 @@ export default function AiAssistantWidget({ lang, setActiveTab }) {
   const quickQuestions = isTe
     ? [
         { label: "🛕 ఆలయ దర్శనం సమయాలు?", query: "స్వామి వారి దర్శనం వేళలు ఏమిటి?", targetTab: "temple" },
-        { label: "🌾 ధాన్యం మండి ధరలు?", query: "ఈ రోజు వరి ధాన్యం మండి ధర ఎంత?", targetTab: "agri" },
-        { label: "📞 సచివాలయ అధికారుల ఫోన్లు?", query: "సచివాలయ అధికారుల ఫోన్ నంబర్లు కావాలి", targetTab: "directory" },
-        { label: "📜 తల్లికి వందనం / పథకాలు?", query: "ప్రభుత్వ పథకాల వివరాలు ఏమిటి?", targetTab: "schemes" }
+        { label: "🌾 ధాన్యం ధర?", query: "ధాన్యం మార్కెట్ ధర ఎంత?", targetTab: "agri" },
+        { label: "📞 అత్యవసర నంబర్లు?", query: "అత్యవసర ఫోన్ నంబర్లు కావాలి", targetTab: "directory" },
+        { label: "📜 ప్రభుత్వ పథకాలు?", query: "ప్రభుత్వ పథకాల వివరాలు ఏమిటి?", targetTab: "schemes" }
       ]
     : [
-        { label: "🛕 Temple Darshan Timings?", query: "What are the temple darshan timings?", targetTab: "temple" },
-        { label: "🌾 Paddy Mandi Prices?", query: "What is today's paddy mandi price?", targetTab: "agri" },
-        { label: "📞 Secretariat Contacts?", query: "Show me Grama Sachivalayam contact numbers", targetTab: "directory" },
-        { label: "📜 AP Govt Schemes?", query: "What are the active government schemes?", targetTab: "schemes" }
+        { label: "🛕 Temple timings?", query: "What are the temple darshan timings?", targetTab: "temple" },
+        { label: "🌾 Paddy price?", query: "What is the paddy mandi price?", targetTab: "agri" },
+        { label: "📞 Emergency numbers?", query: "Show me emergency phone numbers", targetTab: "directory" },
+        { label: "📜 Govt schemes?", query: "What are the government schemes?", targetTab: "schemes" }
       ];
 
   const scrollToBottom = () => {
@@ -47,59 +48,72 @@ export default function AiAssistantWidget({ lang, setActiveTab }) {
     }
   }, [chatHistory, isOpen]);
 
-  // AI Logic Engine for Instant Localized Answers
-  const generateAiAnswer = (query) => {
+  // Keyword matching. Answers quote only real, dated data from the site.
+  const generateAnswer = (query) => {
     const q = query.toLowerCase();
+    const has = (...words) => words.some((w) => q.includes(w));
 
-    // 1. Temple Questions
-    if (q.includes("దర్శనం") || q.includes("ఆలయం") || q.includes("స్వామి") || q.includes("temple") || q.includes("darshan") || q.includes("timings")) {
+    if (has("దర్శనం", "ఆలయం", "స్వామి", "పూజ", "temple", "darshan", "timing", "puja", "festival")) {
       return {
         text: isTe
-          ? "నడిపూడి శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి వారి ఆలయ ఉదయం దర్శనం 06:00 AM నుండి 11:30 AM వరకు, మరియు సాయంత్రం దర్శనం 04:00 PM నుండి 08:00 PM వరకు ప్రారంభంలో ఉంటుంది. మధ్యాహ్నం 11:30 - 04:00 ఆలయ విరామం. ప్రతి మంగళవారం ఉదయం 8:00 గంటలకు ప్రత్యేక సర్ప దోష నివారణ హోమం నిర్వహించబడుతుంది."
-          : "Sri Subramanyeswara Swamy Temple Darshan is open daily Morning 06:00 AM - 11:30 AM and Evening 04:00 PM - 08:00 PM. Afternoon temple break is 11:30 AM - 04:00 PM. Special Sarpa Dosha Homam is held every Tuesday at 8:00 AM.",
+          ? "దర్శన వేళలు, పూజలు, ఉత్సవాలు మరియు ఆలయానికి చేరుకునే మార్గాలు ఆలయం పేజీలో ఉన్నాయి."
+          : "Darshan timings, pujas, festivals and how to reach the temple are on the Temple page.",
         actionTab: "temple"
       };
     }
 
-    // 2. Agriculture / Paddy Mandi Questions
-    if (q.includes("ధాన్యం") || q.includes("వరి") || q.includes("ధర") || q.includes("మండి") || q.includes("paddy") || q.includes("price") || q.includes("mandi") || q.includes("agri")) {
-      const swarna = mandiPrices[0];
+    if (has("ధాన్యం", "వరి", "ధర", "మండి", "మార్కెట్", "paddy", "price", "mandi", "market")) {
+      const text = penugondaPaddy
+        ? isTe
+          ? `పెనుగొండ మార్కెట్‌లో ${formatDate(penugondaPaddy.date, lang)} న నివేదించిన ధాన్యం (${penugondaPaddy.variety}) సాధారణ ధర క్వింటాలుకు ${rupees(penugondaPaddy.modal)} (మూలం: Agmarknet). ఇతర మార్కెట్ల ధరలు వ్యవసాయం పేజీలో ఉన్నాయి.`
+          : `Paddy (${penugondaPaddy.variety}) at Penugonda market was reported at a modal price of ${rupees(penugondaPaddy.modal)} per quintal on ${formatDate(penugondaPaddy.date, lang)} (source: Agmarknet). Other markets are on the Agriculture page.`
+        : isTe
+          ? "పెనుగొండ మార్కెట్ ఇటీవల ధర నివేదించలేదు. సమీప మార్కెట్ల ధరలు వ్యవసాయం పేజీలో చూడండి."
+          : "Penugonda market has not reported a recent price. See nearby markets on the Agriculture page.";
+      return { text, actionTab: "agri" };
+    }
+
+    if (has("వాతావరణ", "వర్షం", "గోదావరి", "నీటిమట్టం", "వరద", "weather", "rain", "river", "godavari", "flood", "barrage")) {
       return {
         text: isTe
-          ? `ఈ రోజు మార్టేరు / పెనుగొండ మండిలో స్వర్ణ వరి ధాన్యం ధర క్వింటాలుకు ${swarna?.price || "₹2,340"}. గోదావరి డెల్టా కాలువ ఇన్-ఫ్లో 46,800 క్యూసెక్కులుగా నమోదు కాబడింది.`
-          : `Today's Swarna paddy price at Penugonda Mandi is ${swarna?.price || "₹2,340"} per quintal. Godavari Barrage inflow is currently 46,800 Cusecs.`,
+          ? `ధవళేశ్వరం బ్యారేజ్ వద్ద గోదావరి నీటిమట్టం ${river.latest.level.toFixed(2)} మీటర్లు (${formatDateTime(river.latest.time, lang)}, మూలం: CWC). వాతావరణ అంచనా వ్యవసాయం పేజీలో ఉంది.`
+          : `The Godavari level at Dowleswaram barrage was ${river.latest.level.toFixed(2)} m (${formatDateTime(river.latest.time, lang)}, source: CWC). The weather forecast is on the Agriculture page.`,
         actionTab: "agri"
       };
     }
 
-    // 3. Secretariat Officials / Directory
-    if (q.includes("ఫోన్") || q.includes("అధికారి") || q.includes("సచివాలయం") || q.includes("contact") || q.includes("phone") || q.includes("secretary") || q.includes("directory")) {
-      const vro = sachivalayamStaff[0];
-      const secretary = sachivalayamStaff[1];
+    if (has("ఫోన్", "నంబర్", "అత్యవసర", "అంబులెన్స్", "ఆంబులెన్స్", "పోలీసు", "అధికారి", "సచివాలయం", "contact", "phone", "number", "emergency", "ambulance", "police", "secretar", "directory")) {
       return {
         text: isTe
-          ? `నడిపూడి గ్రామ సచివాలయం వి.ఆర్.ఓ ${vro?.nameTe || "కె. వెంకటేశ్వర రావు"} (ఫోన్: ${vro?.phone || "+91 94401 88210"}), పంచాయతీ కార్యదర్శి ${secretary?.nameTe || "పి. సురేష్ వర్మ"} (ఫోన్: ${secretary?.phone || "+91 98480 33412"}).`
-          : `Nadipudi Secretariat VRO ${vro?.nameEn || "K. Venkateswara Rao"} (${vro?.phone}), Panchayat Secretary ${secretary?.nameEn || "P. Suresh Varma"} (${secretary?.phone}).`,
+          ? "అత్యవసరం: 112 (అన్ని అత్యవసర సేవలు), 108 (ఆంబులెన్స్), 100 (పోలీసు), 1912 (విద్యుత్). సచివాలయ సిబ్బంది పేర్లు, ఫోన్ నంబర్లు ఇంకా నిర్ధారించబడలేదు — ఏ సేవకు ఎవరిని సంప్రదించాలో డైరెక్టరీ పేజీలో ఉంది."
+          : "Emergency: 112 (all emergencies), 108 (ambulance), 100 (police), 1912 (electricity). Sachivalayam staff names and phone numbers are not confirmed yet — the Directory page shows who handles which service.",
         actionTab: "directory"
       };
     }
 
-    // 4. Welfare Schemes
-    if (q.includes("పథకం") || q.includes("తల్లికి") || q.includes("రైతు") || q.includes("scheme") || q.includes("welfare") || q.includes("annadatha")) {
+    if (has("పథకం", "పథకాల", "తల్లికి", "పింఛ", "రైతు", "scheme", "welfare", "pension", "annadat")) {
       return {
         text: isTe
-          ? "నడిపూడి గ్రామంలో AP రైతు భరోసా (ఏటా ₹13,500), తల్లికి వందనం (ఏటా ₹15,000), మరియు దీపం 2.0 (3 ఉచిత గ్యాస్ సిలిండర్లు) పథకాలు సచివాలయం ద్వారా అందజేయబడుతున్నాయి."
-          : "Active AP Govt Welfare Schemes in Nadipudi include Rythu Bharosa (₹13,500/yr), Talliki Vandanam (₹15,000/yr), and Deepam 2.0 Gas Scheme.",
+          ? "రైతులు, విద్యార్థులు, పింఛన్లు, గృహ నిర్మాణ పథకాల అర్హతలు, కావలసిన పత్రాలు మరియు అధికారిక దరఖాస్తు లింకులు పథకాల పేజీలో ఉన్నాయి. మొత్తాలు మారుతుంటాయి — అధికారిక పోర్టల్‌లో సరిచూసుకోండి."
+          : "Eligibility, documents and official application links for farmer, student, pension and housing schemes are on the Schemes page. Amounts change, so confirm on the official portal.",
         actionTab: "schemes"
       };
     }
 
-    // 5. Default Fallback
+    if (has("ఫిర్యాదు", "సమస్య", "అర్జీ", "grievance", "complain", "spandana", "pgrs")) {
+      return {
+        text: isTe
+          ? "ఫిర్యాదులు అధికారిక PGRS / మీ కోసం పోర్టల్ ద్వారా లేదా గ్రామ సచివాలయంలో నమోదు చేయాలి. విధానం ఫిర్యాదుల పేజీలో ఉంది."
+          : "Grievances are filed on the official PGRS / Mee Kosam portal or at the Grama Sachivalayam. The steps are on the Grievances page.",
+        actionTab: "spandana"
+      };
+    }
+
     return {
       text: isTe
-        ? "మీ ప్రశ్నకు సమాధానం మా గ్రామ డేటాబెస్‌లో పొందుపరచబడింది. మీ సౌలభ్యం కొరకు తగిన విభాగాన్ని తెరిచాను."
-        : "I have processed your query against Nadipudi Village Database. You can explore full details in the relevant tab.",
-      actionTab: "home"
+        ? "క్షమించండి, దీనికి నా దగ్గర సమాధానం లేదు. ఆలయం, ధాన్యం ధరలు, వాతావరణం, అత్యవసర నంబర్లు, పథకాలు లేదా ఫిర్యాదుల గురించి అడగండి."
+        : "Sorry, I don't have an answer for that. Try asking about the temple, paddy prices, weather, emergency numbers, schemes or grievances.",
+      actionTab: null
     };
   };
 
@@ -112,9 +126,8 @@ export default function AiAssistantWidget({ lang, setActiveTab }) {
     setChatHistory(newHistory);
     setInputMsg("");
 
-    // Simulate AI Thought Delay
     setTimeout(() => {
-      const response = generateAiAnswer(textToSend);
+      const response = generateAnswer(textToSend);
       const aiTime = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
       setChatHistory((prev) => [
         ...prev,
@@ -159,9 +172,9 @@ export default function AiAssistantWidget({ lang, setActiveTab }) {
         <button
           className="ai-widget-fab"
           onClick={() => setIsOpen(!isOpen)}
-          aria-label="Nadipudi AI Assistant"
+          aria-label={isTe ? "త్వరిత సహాయం" : "Quick help"}
         >
-          <Bot size={26} />
+          <HelpCircle size={26} />
           <span className="ai-fab-pulse"></span>
         </button>
       </div>
@@ -173,14 +186,14 @@ export default function AiAssistantWidget({ lang, setActiveTab }) {
           <div className="ai-widget-header">
             <div className="flex items-center gap-2">
               <div className="ai-header-avatar">
-                <Sparkles size={18} />
+                <HelpCircle size={18} />
               </div>
               <div>
                 <h4 style={{ fontSize: "1rem", color: "#ffffff", fontWeight: "700" }}>
-                  {isTe ? "నడిపూడి గ్రామ AI సహాయకుడు" : "Nadipudi AI Citizen Assistant"}
+                  {isTe ? "నడిపూడి త్వరిత సహాయం" : "Nadipudi Quick Help"}
                 </h4>
                 <p style={{ fontSize: "0.75rem", color: "#4ade80", margin: "0" }}>
-                  ● {isTe ? "రైతులు & పౌరులకు 24/7 ప్రత్యక్ష సేవలు" : "24/7 Live Rural Assistance"}
+                  {isTe ? "సరైన పేజీకి దారి చూపే సహాయం" : "Points you to the right page"}
                 </p>
               </div>
             </div>

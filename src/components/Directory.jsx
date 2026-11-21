@@ -1,5 +1,5 @@
 import React from "react";
-import { PhoneCall, ShieldAlert, User, MapPin } from "lucide-react";
+import { PhoneCall, ShieldAlert, User } from "lucide-react";
 import { sachivalayamStaff, emergencyNumbers } from "../data/directoryData";
 
 export default function Directory({ lang, t }) {
@@ -60,8 +60,8 @@ export default function Directory({ lang, t }) {
             <h2>{t.sachivalayamTitle}</h2>
             <p style={{ fontSize: "0.88rem", opacity: 0.8 }}>
               {isTe
-                ? "నడిపూడి గ్రామ సచివాలయం ప్రభుత్వ ఉద్యోగుల వివరాలు మరియు బాధ్యతలు"
-                : "Official contact directory for Nadipudi Village Secretariat officers"}
+                ? "ఏ సేవకు ఎవరిని సంప్రదించాలి. పేర్లు, ఫోన్ నంబర్లు నిర్ధారించిన తరువాత చేర్చబడతాయి."
+                : "Who to ask for which service. Names and phone numbers will be added once confirmed."}
             </p>
           </div>
         </div>
@@ -84,29 +84,14 @@ export default function Directory({ lang, t }) {
                 <span className="badge-normal" style={{ marginBottom: "8px", display: "inline-block" }}>
                   {isTe ? staff.roleTe : staff.roleEn}
                 </span>
-                <h3 style={{ fontSize: "1.1rem", marginBottom: "4px", color: "var(--primary-emerald)" }}>
-                  {isTe ? staff.nameTe : staff.nameEn}
-                </h3>
-                <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginBottom: "8px", display: "flex", alignItems: "center", gap: "4px" }}>
-                  <MapPin size={14} /> {isTe ? staff.officeTe : staff.officeEn}
-                </p>
-
-                <div style={{ fontSize: "0.88rem", background: "var(--card-bg)", padding: "10px", borderRadius: "8px", marginBottom: "12px" }}>
-                  <strong>బాధ్యతలు / Responsibilities:</strong>
+                <div style={{ fontSize: "0.88rem", background: "var(--card-bg)", padding: "10px", borderRadius: "8px", marginTop: "8px" }}>
+                  <strong>{isTe ? "బాధ్యతలు:" : "Responsibilities:"}</strong>
                   <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginTop: "2px" }}>
                     {isTe ? staff.responsibilitiesTe : staff.responsibilitiesEn}
                   </p>
                 </div>
               </div>
 
-              <a
-                href={`tel:${staff.phone.replace(/\s+/g, "")}`}
-                className="btn-outline"
-                style={{ alignSelf: "flex-start" }}
-              >
-                <PhoneCall size={16} />
-                <span>{staff.phone}</span>
-              </a>
             </div>
           ))}
         </div>

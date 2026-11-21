@@ -6,58 +6,55 @@
 
 ---
 
-## 🎯 Motto of the Portal
+> **This is a volunteer-run community site. It is not an official government website.**
 
-> *"Empowering rural citizens with instant, transparent, and seamless digital access to agriculture, welfare schemes, civic governance, and emergency services."*
-> 
-> **"ప్రజల చెంతకే డిజిటల్ సేవలు - నడిపూడి అభివృద్ధికి సమాచార వేదిక"**
+## What the portal shows
 
-The **Nadipudi Digital Village Portal** serves as a single-window digital hub designed specifically for the residents of Nadipudi village. It bridges the gap between rural citizens and government welfare programs, market commodity rates, crop insurance portals, local administration contacts, and disaster management updates.
+Every figure on the site carries its source and the date it was observed. Nothing is estimated or invented; where no reliable public source exists, the page says so.
 
----
+| Page | Address | Content | Source |
+|---|---|---|---|
+| Home | `/` | Weather now, paddy price, Godavari level, census headline figures | see below |
+| Temple | `/temple/` | Sri Subramanyeswara Swamy Temple: timings, pujas, festivals, photos | community (to be confirmed with the temple priests) |
+| Agriculture & Weather | `/agriculture/` | Current weather and 3-day forecast | [Open-Meteo](https://open-meteo.com/), fetched in the browser |
+| | | Paddy prices at Penugonda and other West Godavari markets | [Agmarknet via data.gov.in](https://www.data.gov.in/) |
+| | | Godavari level at Dowleswaram barrage with warning/danger levels | [Central Water Commission](https://ffs.india-water.gov.in/) |
+| Schemes | `/schemes/` | Welfare scheme guide with official application links | scheme portals |
+| Notices & Alerts | `/notices/` | Official disaster alerts naming West Godavari; confirmed village notices | [NDMA SACHET](https://sachet.ndma.gov.in/) |
+| Village Data | `/village-data/` | Population, literacy, workers, land use | Census of India 2011 (village code 588686) |
+| Voter Services | `/elections/` | Links to Election Commission services | ECI |
+| Helplines & Secretariat | `/directory/` | Emergency numbers; who handles which service | national short codes |
+| Filing a Grievance | `/grievances/` | How to use the official PGRS / Mee Kosam system | AP PGRS |
 
-## 💡 Key Portal Features
+Telugu and English are both supported throughout.
 
-* **🌾 Agriculture & Crop Hub**: Real-time market commodity prices (Swarna Paddy, Coconuts, Vannamei Shrimp, Red Chilli, Sugarcane) across Marteru, Penugonda, Tanuku, Bhimavaram & Palakollu mandis. Live Sir Arthur Cotton Barrage canal inflow/outflow data, weather advisories, e-Crop status, and PMFBY links.
-* **🏛️ Government Welfare Schemes Directory**: Filterable catalog covering agriculture support (PMFBY, Annadata Sukhibhava / Rythu Bharosa), education (Talliki Vandanam), social security pensions (NTR Bharosa), and affordable housing (PMAY-Gramin) with step-by-step eligibility, document checklists, and verified application links.
-* **🗺️ Interactive Village Boundary Map**: GIS-style map highlighting key village landmarks, Grama Sachivalayam, ZP High School, MP Elementary Schools, primary health centers, and agricultural field blocks.
-* **🗳️ Elections & Electoral Roll**: EPIC Voter ID search, polling station booth locator (Wards 1 through 8), downloadable ECI Form 6/8 registration guides, and official election notifications.
-* **📌 Village Notice Board**: Panchayat announcements, APEPDCL scheduled power outage notifications, drinking water supply timings, and local news feed.
-* **📞 Sachivalayam Directory & Helplines**: Contact details for Grama Sachivalayam staff (Panchayat Secretary, Digital Assistant, VRO, ANM, Agriculture Assistant) and 24/7 emergency helplines.
-* **🤝 Spandana Grievance Redressal**: Step-by-step guide and local helpdesk form to lodge public grievances directly to Penugonda Tahsildar / West Godavari Collectorate.
-* **🌐 Bilingual Support**: Instant language switching between Telugu (తెలుగు) and English for accessibility.
+## How the data stays current
 
----
+- **Weather** is fetched by the visitor's browser from Open-Meteo each time (cached for 30 minutes). It is a weather-model estimate, not a village measurement.
+- **Mandi prices, river level and alerts** are fetched twice a day by `.github/workflows/daily-update.yml`, which runs `scripts/fetchLiveData.js`, commits `src/data/live/*.json` and starts a deploy.
+- If a source fails, its previous file is kept and the site marks that reading as out of date. It never shows a made-up value.
 
-## ⚡ Challenges Overcome During Development
+### One-time setup: data.gov.in API key
 
-Building a centralized digital portal for a rural community presented several unique technical, architectural, and usability challenges:
+Mandi prices need a free API key. Without one the script falls back to data.gov.in's shared sample key, which is rate-limited and often refused.
 
-### 1. Handling Frequent Domain & Scheme Name Changes
-* **Challenge**: Government welfare schemes and official portal URLs frequently undergo domain migrations, renames, and server updates (e.g., transition of *Rythu Bharosa* to *Annadata Sukhibhava*, *Amma Vodi* to *Talliki Vandanam*, and *Spandana* to *Mee Kosam*).
-* **Solution**: Developed a central data verification workflow and automated link audit scripts. All 15+ external links are continuously verified for HTTP 200 OK status to ensure users are never directed to dead or outdated links.
+1. Create a free account at [data.gov.in](https://www.data.gov.in/) and copy the API key from your profile.
+2. In the GitHub repository: **Settings → Secrets and variables → Actions → New repository secret**, name `DATA_GOV_IN_API_KEY`.
 
-### 2. Bilingual Script & Localized Terminology
-* **Challenge**: Technical government jargon can be difficult for rural citizens to navigate. Providing accurate Telugu script alongside English while keeping the UI clean was critical.
-* **Solution**: Implemented a lightweight i18n translation system (`translations.js`) that dynamically updates labels, card details, document requirements, and status badges without re-rendering the app state.
+## Adding content
 
-### 3. Low-Bandwidth & Mobile-First Optimization
-* **Challenge**: Rural users frequently access the portal on mobile devices over 3G/4G networks with limited bandwidth.
-* **Solution**: Built using Vite and React with minimal third-party dependencies, leveraging pure CSS design tokens and Lucide icons. Production bundle size is optimized for fast sub-second loading speeds.
+- **Notices and news:** add entries to `src/data/noticeData.js`. Only confirmed notices, each with its real issue date and who issued it.
+- **Sachivalayam staff:** `src/data/directoryData.js` lists roles only. Add a name or phone number only after confirming it with that person and getting their consent.
+- **Census and admin facts:** `src/data/censusData.js`. Note there is another Nadipudi in Amalapuram mandal; check the village code (588686) before copying figures from aggregator sites.
 
-### 4. Cross-Referencing National & State Digital Services
-* **Challenge**: Farmers and citizens previously had to navigate multiple disconnected websites (PM-Kisan, AP e-Crop, PMFBY, ECI, Agmarknet).
-* **Solution**: Synthesized multi-source data into intuitive tabbed dashboards, consolidating government services into a single click-through portal.
-
----
+Not yet available from any open source, and therefore not shown: shrimp and coconut prices, barrage inflow/outflow in cusecs, ward and voter counts, scheme beneficiary numbers.
 
 ## 🛠️ Technology Stack
 
-* **Frontend Framework**: React 18 + Vite
-* **Styling**: Modern Vanilla CSS with CSS custom properties (tokens), responsive flex/grid layouts, and glassmorphism cards
-* **Iconography**: Lucide React
-* **Deployment**: GitHub Pages via GitHub Actions CI/CD pipeline
-* **Quality Assurance**: Automated HTTP link diagnostics & Oxlint
+* **Frontend**: React 19 + Vite, plain CSS, Lucide icons, Chart.js
+* **Pages**: each page has its own address; `scripts/postbuild.js` writes a real HTML file per page plus `sitemap.xml`
+* **Deployment**: GitHub Pages via GitHub Actions
+* **Linting**: Oxlint
 
 ---
 
@@ -78,12 +75,15 @@ npm install
 # 4. Start local development server
 npm run dev
 
-# 5. Build production bundle
+# 5. Build production bundle (also writes per-page HTML and sitemap.xml)
 npm run build
+
+# Optional: refresh mandi prices, river level and alerts locally
+npm run fetch-data
 ```
 
 ---
 
 ## 📜 Disclaimer
 
-*This portal collates publicly available information published by the Government of Andhra Pradesh, Government of India, and West Godavari District Administration for community welfare and informational purposes.*
+*This is a volunteer-run community information site and is not affiliated with the Government of Andhra Pradesh or the Government of India. It collates publicly available information for community benefit. Confirm with the official source before relying on it for important decisions.*

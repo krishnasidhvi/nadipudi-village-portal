@@ -38,7 +38,6 @@ export const dioramaLandmarks = [
     zoneTe: "గ్రామ కేంద్రం - ఆలయ పుష్కరిణి",
     zoneEn: "Village Center - Beside Sacred Pond",
     coords: [16.6487989, 81.8326407],
-    surveyNo: "RS No. 104/1A",
     topOffset: "58%",
     leftOffset: "46%",
     icon: "🛕",
@@ -54,7 +53,6 @@ export const dioramaLandmarks = [
     zoneTe: "తూర్పు సరిహద్దు - ఏటిగట్టు ప్రక్కన",
     zoneEn: "Eastern Boundary - Past Canal Bridge",
     coords: [16.6510, 81.8410],
-    surveyNo: "River Poramboke",
     topOffset: "32%",
     leftOffset: "82%",
     icon: "🌊",
@@ -70,7 +68,6 @@ export const dioramaLandmarks = [
     zoneTe: "గ్రామ పడమటి & మధ్య భాగం",
     zoneEn: "West & Center Wards",
     coords: [16.6475, 81.8320],
-    surveyNo: "Gram Kantham 88/2",
     topOffset: "64%",
     leftOffset: "35%",
     icon: "🏠",
@@ -86,7 +83,6 @@ export const dioramaLandmarks = [
     zoneTe: "ఉత్తర & వాయువ్య ఆయకట్టు",
     zoneEn: "North & North-West Ayacut",
     coords: [16.6530, 81.8300],
-    surveyNo: "RS No. 112/3B",
     topOffset: "25%",
     leftOffset: "40%",
     icon: "🌾",
@@ -102,7 +98,6 @@ export const dioramaLandmarks = [
     zoneTe: "దక్షిణ & ఆగ్నేయ సరిహద్దు",
     zoneEn: "South & South-East Sector",
     coords: [16.6450, 81.8360],
-    surveyNo: "RS No. 142/2A",
     topOffset: "75%",
     leftOffset: "65%",
     icon: "🌴",
@@ -118,19 +113,10 @@ export const dioramaLandmarks = [
     zoneTe: "గ్రామ నివాస సరిహద్దులు",
     zoneEn: "Village Perimeters",
     coords: [16.6468, 81.8310],
-    surveyNo: "RS No. 82/1, 96/4",
     topOffset: "72%",
     leftOffset: "28%",
     icon: "🛕",
     detailsTe: "గ్రామ రక్షక దేవత శ్రీ మావుళ్ళమ్మ అమ్మవారి ఆలయం, శ్రీ రామాలయం మరియు శ్రీ భక్త ఆంజనేయ స్వామి ఆలయాలు.",
     detailsEn: "Heritage village shrines including Sri Mavullamma Grama Devatha Temple, Sri Rama Mandiram, and Sri Anjaneya Swamy Temple."
   }
-];
-
-export const surveyLandRecords = [
-  { surveyNo: "104/1A", classificationTe: "దేవాలయం & పవిత్ర కోనేరు (Koneru)", classificationEn: "Subramanyeswara Temple & Pond", acres: "3.8", ownerTe: "శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి వారి ట్రస్ట్", ownerEn: "Sri Subramanyeswara Swamy Trust" },
-  { surveyNo: "110/2", classificationTe: "వసిష్ఠ గోదావరి & పుష్కర ఘాట్", classificationEn: "Godavari River & Pushkar Ghat Zone", acres: "5.2", ownerTe: "దేవాదాయ & నీటిపారుదల శాఖ", ownerEn: "Irrigation & Endowments Dept" },
-  { surveyNo: "88/2", classificationTe: "గ్రామ కంఠం (నివాస ప్రాంతం)", classificationEn: "Gram Kantham (Residential Wards)", acres: "0.45", ownerTe: "నడిపూడి గ్రామ పంచాయతీ", ownerEn: "Nadipudi Gram Panchayat" },
-  { surveyNo: "112/3B", classificationTe: "మాగాణి (స్వర్ణ వరి పొలాలు)", classificationEn: "Wetland Paddy Ayacut", acres: "4.2", ownerTe: "నడిపూడి రైతులు", ownerEn: "Nadipudi Farmers" },
-  { surveyNo: "142/2A", classificationTe: "కొబ్బరి తోటలు", classificationEn: "Coconut Plantation", acres: "5.8", ownerTe: "నడింపల్లి వీరభద్రరాజు", ownerEn: "Nadimpalli Veerabhadraraju" }
 ];

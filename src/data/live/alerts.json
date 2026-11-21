@@ -1,0 +1,8 @@
+{
+  "fetchedAt": "2026-11-21T21:43:36.470Z",
+  "source": "NDMA SACHET national disaster alert feed",
+  "sourceUrl": "https://sachet.ndma.gov.in/",
+  "scannedCount": 100,
+  "filter": "Alerts whose text names West Godavari district or the Dowleswaram barrage",
+  "alerts": []
+}

@@ -1,67 +1,5 @@
-import { getNumericDate } from "../utils/dateUtils";
-
-export const mandiPrices = [
-  {
-    id: "m1",
-    cropTe: "వరి (స్వర్ణ / Swarna Paddy)",
-    cropEn: "Paddy (Swarna / BPT 5204)",
-    varietyTe: "గ్రేడ్ - A (Fine Variety)",
-    varietyEn: "Grade-A Fine",
-    price: "₹2,340 / క్వింటాల్ (Quintal)",
-    trend: "+ ₹40 (గణనీయమైన పెరుగుదల)",
-    locationTe: "మార్టేరు / పెనుగొండ మార్కెట్",
-    locationEn: "Marteru / Penugonda Market",
-    updatedDate: getNumericDate(0),
-  },
-  {
-    id: "m2",
-    cropTe: "కొబ్బరికాయలు (Coconuts)",
-    cropEn: "Coconuts (Godavari Delta)",
-    varietyTe: "పెద్ద రకం (1000 కాయలు)",
-    varietyEn: "Large Size (per 1000 nuts)",
-    price: "₹14,750 / 1000 కాయలు",
-    trend: "+ ₹250 (డిమాండ్ అధికం)",
-    locationTe: "తణుకు / పెనుగొండ మండి",
-    locationEn: "Tanuku / Penugonda Mandi",
-    updatedDate: getNumericDate(0),
-  },
-  {
-    id: "m3",
-    cropTe: "వెన్నామి రొయ్యలు (Vannamei Shrimp - Aqua)",
-    cropEn: "Vannamei Prawns (Aqua)",
-    varietyTe: "100 కౌంట్ (100 Count)",
-    varietyEn: "100 Count",
-    price: "₹245 / కేజీ (Kg)",
-    trend: "+ ₹5 (సానుకూల విపణి)",
-    locationTe: "భీమవరం ఆక్వా మార్కెట్",
-    locationEn: "Bhimavaram Aqua Hub",
-    updatedDate: getNumericDate(0),
-  },
-  {
-    id: "m4",
-    cropTe: "మిర్చి (Red Chilli)",
-    cropEn: "Red Chilli (Teja Variety)",
-    varietyTe: "తేజ ఎండిన మిర్చి",
-    varietyEn: "Teja Dry",
-    price: "₹18,300 / క్వింటాల్",
-    trend: "+ ₹100",
-    locationTe: "పాలకొల్లు రైతు బజార్",
-    locationEn: "Palakollu Rythu Bazaar",
-    updatedDate: getNumericDate(0),
-  },
-  {
-    id: "m5",
-    cropTe: "చెరకు (Sugarcane)",
-    cropEn: "Sugarcane",
-    varietyTe: "కాటన్ రకం",
-    varietyEn: "Commercial Mill Variety",
-    price: "₹3,180 / టన్ను (Ton)",
-    trend: "స్థిరం (Stable)",
-    locationTe: "తణుకు షుగర్స్",
-    locationEn: "Tanuku Sugar Factory Yard",
-    updatedDate: getNumericDate(0),
-  }
-];
+// Links to official agriculture portals. Prices, weather and river level are
+// not kept here: they come from src/data/live/ (see scripts/fetchLiveData.js).
 
 export const publicAgriLinks = [
   {
@@ -75,8 +13,8 @@ export const publicAgriLinks = [
   },
   {
     id: "a2",
-    titleTe: "PM-Kisan & AP రైతు భరోసా పోర్టల్",
-    titleEn: "PM-Kisan & Rythu Bharosa DBT Portal",
+    titleTe: "PM-కిసాన్ పోర్టల్",
+    titleEn: "PM-Kisan Portal",
     descTe: "రైతుల ఖాతాలోకి సాయం జమ అయ్యిందో లేదో మీ ఆధార్ లేదా ఖాతా సంఖ్యతో తనిఖీ చేయండి.",
     descEn: "Check direct benefit transfer installment credit status using Aadhaar number or Farmer Registration ID.",
     url: "https://pmkisan.gov.in/",
@@ -87,9 +25,9 @@ export const publicAgriLinks = [
     titleTe: "Agmarknet - భారత ప్రభుత్వ వ్యవసాయ విపణి",
     titleEn: "Agmarknet India Agri Prices Portal",
     descTe: "కేంద్ర వ్యవసాయ మంత్రిత్వ శాఖ ద్వారా దేశవ్యాప్త మరియు పశ్చిమ గోదావరి జిల్లా మండి ప్రత్యక్ష ధరలు.",
-    descEn: "Real-time mandi prices across Andhra Pradesh markets published by Ministry of Agriculture, Govt of India.",
+    descEn: "Daily mandi prices across Andhra Pradesh markets published by Ministry of Agriculture, Govt of India.",
     url: "https://agmarknet.gov.in/",
-    tag: "Central Mandi Feed",
+    tag: "Mandi Prices",
   },
   {
     id: "a4",
@@ -98,7 +36,7 @@ export const publicAgriLinks = [
     descTe: "పెనుగొండ మండలం వర్షపాతం, ఉష్ణోగ్రత మరియు ధవళేశ్వరం బ్యారేజ్ డెల్టా కాలువల నీటి విడుదల తాజా నివేదికలు.",
     descEn: "Penugonda mandal rainfall forecast, temperature, humidity, and Sir Arthur Cotton Barrage flood discharge updates.",
     url: "https://apsdma.ap.gov.in/",
-    tag: "Live Weather & Canal",
+    tag: "Disaster Alerts",
   },
   {
     id: "a5",
@@ -110,25 +48,3 @@ export const publicAgriLinks = [
     tag: "PMFBY Crop Insurance",
   }
 ];
-
-export const canalWaterStatus = {
-  barrageNameTe: "సర్ ఆర్ధర్ కాటన్ బ్యారేజ్, ధవళేశ్వరం (ధవళేశ్వరం కాటన్ ఆనకట్ట)",
-  barrageNameEn: "Sir Arthur Cotton Barrage, Dowleswaram",
-  inflow: "46,800 క్యూసెక్కులు (Cusecs)",
-  outflow: "44,500 క్యూసెక్కులు (Cusecs)",
-  deltaCanalsTe: "గోదావరి పశ్చిమ డెల్టా కాలువలు (West Godavari Main Canal & Penugonda Feeder Canal) లో పూర్తి స్థాయిలో నీటి విడుదల కొనసాగుతోంది.",
-  deltaCanalsEn: "Full supply flowing through West Delta Canal feeding Penugonda and Nadipudi agricultural ayacut.",
-  statusTe: "సాధారణ సాగు నీటి విడుదల ప్రవాహం",
-  statusEn: "Normal Irrigation Canal Release",
-};
-
-export const penugondaWeather = {
-  locationTe: "నడిపూడి / పెనుగొండ మండలం (534326)",
-  locationEn: "Nadipudi / Penugonda Mandal (534326)",
-  temp: "31°C",
-  conditionTe: "పాక్షికంగా మేఘావృతం (Partly Cloudy)",
-  conditionEn: "Partly Cloudy with Light Delta Breeze",
-  humidity: "78%",
-  rainfallForecastTe: "వచ్చే 24 గంటల్లో తేలికపాటి నుండి మోస్తరు వర్షం పడే అవకాశం ఉంది. వరి నాట్లకు అనుకూలం.",
-  rainfallForecastEn: "Light to moderate showers expected in 24 hrs. Beneficial for Swarna paddy transplantation.",
-};
