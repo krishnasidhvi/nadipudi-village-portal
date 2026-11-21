@@ -118,9 +118,10 @@ export const templeInfo = {
     { nameTe: "అభిషేక తీర్థం & పంచామృతం", nameEn: "Panchamrutam & Teertham", typeTe: "ఉచిత వితరణ ప్రసాదం", typeEn: "Free Sacred Offering" }
   ],
 
+  // Straight-line distances measured from OpenStreetMap (see the map page).
   howToReach: [
-    { modeTe: "ఆర్టీసీ బస్సు (Bus)", modeEn: "APSRTC Bus", descTe: "పెనుగొండ, మార్టేరు మరియు పాలకొల్లు ఆర్టీసీ బస్ స్టాండ్ల నుండి నడిపూడికి నిమిషానికో ఆటో/బస్సు సదుపాయం కలదు." , descEn: "Frequent RTC buses and autos connect Nadipudi from Penugonda (4 km), Marteru (5 km), and Palakollu (15 km)." },
-    { modeTe: "రైల్వే స్టేషన్ (Train)", modeEn: "Railway Station", descTe: "సమీప రైల్వే స్టేషన్లు: మార్టేరు (Marteru Halt - 5 km), పాలకొల్లు (Palakollu - 15 km), తణుకు (Tanuku - 22 km).", descEn: "Nearest Railway Stations: Marteru (5 km), Palakollu (15 km), and Tanuku (22 km)." },
-    { modeTe: "విమానాశ్రయం (Airport)", modeEn: "Airport", descTe: "సమీప విమానాశ్రయం: రాజమండ్రి విమానాశ్రయం (Rajahmundry Airport - 72 km), విజయవాడ (Vijayawada Airport - 125 km).", descEn: "Nearest Airports: Rajahmundry (72 km) and Vijayawada International Airport (125 km)." }
+    { modeTe: "రోడ్డు మార్గం", modeEn: "By road", descTe: "కొడమంచిలి – సిద్ధాంతం రోడ్డు గ్రామం గుండా వెళ్తుంది. మండల కేంద్రం పెనుగొండ సుమారు 12 కి.మీ.; పాలకొల్లు సుమారు 19 కి.మీ., తణుకు సుమారు 20 కి.మీ. (నేరుగా దూరం).", descEn: "The Kodamanchili – Siddantham road passes through the village. Penugonda, the mandal headquarters, is about 12 km away; Palakollu about 19 km and Tanuku about 20 km (straight-line)." },
+    { modeTe: "రైలు మార్గం", modeEn: "By train", descTe: "సమీప రైల్వే స్టేషన్లు: పాలకొల్లు (సుమారు 19 కి.మీ.), తణుకు (సుమారు 21 కి.మీ.), అత్తిలి (సుమారు 23 కి.మీ.) — నేరుగా దూరం.", descEn: "Nearest railway stations: Palakollu (about 19 km), Tanuku (about 21 km) and Attili (about 23 km), straight-line." },
+    { modeTe: "విమాన మార్గం", modeEn: "By air", descTe: "సమీప విమానాశ్రయం: రాజమండ్రి (సుమారు 51 కి.మీ. నేరుగా దూరం).", descEn: "Nearest airport: Rajahmundry (about 51 km straight-line)." }
   ]
 };

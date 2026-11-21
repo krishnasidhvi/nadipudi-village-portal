@@ -62,6 +62,15 @@ export default function AiAssistantWidget({ lang, setActiveTab }) {
       };
     }
 
+    if (has("పటం", "మ్యాప్", "దారి", "ఎక్కడ", "దూరం", "బస్సు", "రైలు", "map", "where", "location", "direction", "route", "reach", "distance", "bus", "train", "3d")) {
+      return {
+        text: isTe
+          ? "గ్రామ పటం, 3D గ్రామ నిర్మాణ దృశ్యం, నడిపూడి మరియు ఆలయానికి దారి, సమీప రైల్వే స్టేషన్లు మరియు విమానాశ్రయం దూరాలు పటం పేజీలో ఉన్నాయి."
+          : "The map page has the village map, a 3D layout view, directions to Nadipudi and the temple, and distances to nearby stations and the airport.",
+        actionTab: "map"
+      };
+    }
+
     if (has("ధాన్యం", "వరి", "ధర", "మండి", "మార్కెట్", "paddy", "price", "mandi", "market")) {
       const text = penugondaPaddy
         ? isTe

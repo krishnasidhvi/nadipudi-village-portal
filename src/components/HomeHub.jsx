@@ -268,6 +268,9 @@ export default function HomeHub({ lang, t, setActiveTab }) {
             <button className="quick-btn" onClick={() => setActiveTab("analytics")}>
               📊 {isTe ? "గ్రామ గణాంకాలు" : "Village Data"}
             </button>
+            <button className="quick-btn" onClick={() => setActiveTab("map")}>
+              🗺️ {isTe ? "గ్రామ పటం & 3D దృశ్యం" : "Village Map & 3D View"}
+            </button>
           </div>
         </div>
       </div>

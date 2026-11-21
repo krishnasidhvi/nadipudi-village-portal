@@ -11,6 +11,7 @@ import { isKnownTab, routeForTab, tabFromPath, urlForTab } from "./utils/routes"
 // Each page loads its own code on first visit, so the home page stays light
 // on slow mobile connections (charts and the QR library are not needed there).
 const TempleHub = lazy(() => import("./components/TempleHub"));
+const MapHub = lazy(() => import("./components/MapHub"));
 const AgriHub = lazy(() => import("./components/AgriHub"));
 const AnalyticsHub = lazy(() => import("./components/AnalyticsHub"));
 const ElectionHub = lazy(() => import("./components/ElectionHub"));
@@ -85,6 +86,7 @@ export default function App() {
           <Suspense fallback={<div className="card">{lang === "te" ? "లోడ్ అవుతోంది…" : "Loading…"}</div>}>
           {activeTab === "home" && <HomeHub lang={lang} t={t} setActiveTab={setActiveTab} />}
           {activeTab === "temple" && <TempleHub lang={lang} t={t} initialAction={initialAction} />}
+          {activeTab === "map" && <MapHub lang={lang} t={t} />}
           {activeTab === "agri" && <AgriHub lang={lang} t={t} />}
           {activeTab === "schemes" && <SchemesHub lang={lang} t={t} />}
           {activeTab === "notices" && <NoticeBoard lang={lang} t={t} />}

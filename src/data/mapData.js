@@ -1,122 +1,58 @@
-export const mapConfig = {
-  center: [16.6487661, 81.8340487], // Exact Google Maps Nadipudi Center Pin
-  zoom: 15,
-  mandalTe: "పెనుగొండ మండలం",
-  mandalEn: "Penugonda Mandal",
-  districtTe: "పశ్చిమ గోదావరి జిల్లా",
-  districtEn: "West Godavari District",
-  pincode: "534326",
-  googleMapsUrl: "https://www.google.com/maps/place/Nadipudi,+Andhra+Pradesh+534326/@16.6487661,81.8340487,15z/",
-  totalAreaAcres: "1,420 ఎకరాలు (Acres)",
-  totalAreaSqKm: "5.75 చదరపు కిలోమీటర్లు (sq. km)",
-  bounds: [
-    [16.6350, 81.8150],
-    [16.6620, 81.8500],
-  ]
+// Map page data. Points come from OpenStreetMap (src/data/map/osm.json, made by
+// scripts/fetchMapData.js) and building outlines from Overture Maps
+// (src/data/map/buildings.json, made by scripts/fetch_buildings.py).
+//
+// No village boundary is drawn: no openly licensed official boundary exists
+// for Nadipudi. Do not draw one by hand.
+
+import osm from "./map/osm.json";
+import { templeInfo } from "./templeData";
+import { distanceKm, distanceToLineKm } from "../utils/geo";
+
+export { osm };
+
+const villageNode = osm.places.find((p) => p.nameTe === "నడిపూడి");
+
+// [lon, lat]
+export const VILLAGE = villageNode ? villageNode.coord : [81.833763, 16.648554];
+export const TEMPLE = [templeInfo.coords[1], templeInfo.coords[0]];
+
+// The area covered by the building outlines: [west, south, east, north].
+export const LAYOUT_BBOX = [81.818, 16.632, 81.852, 16.664];
+
+export const GODAVARI_KM = (() => {
+  const river = osm.features.features.filter((f) => f.properties.kind === "water-line" && f.properties.name === "Godavari");
+  if (!river.length) return null;
+  return Math.min(...river.map((f) => distanceToLineKm(VILLAGE, f.geometry.coordinates)));
+})();
+
+const withDistance = (list) =>
+  list.map((p) => ({ ...p, km: distanceKm(VILLAGE, p.coord) })).sort((a, b) => a.km - b.km);
+
+export const neighbours = withDistance(osm.places.filter((p) => p !== villageNode)).filter((p) => p.km <= 4.5);
+
+// Towns people actually travel to, nearest first.
+const TOWN_NAMES = ["Palakollu", "Tanuku", "Narasapuram", "Bhimavaram", "Rajamahendravaram", "Ravulapalem", "Tadepallegudem"];
+export const towns = withDistance(osm.towns.filter((t) => TOWN_NAMES.includes(t.name)));
+export const stations = withDistance(osm.stations).slice(0, 3);
+export const airport = withDistance(osm.airports)[0] || null;
+
+// Penugonda (mandal headquarters) is not mapped as a place in OpenStreetMap
+// near the village, so its distance comes from the census village directory.
+export const PENUGONDA_KM = { km: 12, sourceUrl: "https://villageinfo.in/andhra-pradesh/west-godavari/penugonda/nadipudi/" };
+
+export const ELEVATION_M = "12–14";
+
+export const ATTRIBUTION = {
+  osm: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
+  buildings:
+    'Buildings: <a href="https://sites.research.google/open-buildings/" target="_blank" rel="noopener">Google Open Buildings</a> via <a href="https://overturemaps.org/" target="_blank" rel="noopener">Overture Maps</a>',
+  esri: 'Imagery © <a href="https://www.esri.com/" target="_blank" rel="noopener">Esri</a>, Maxar, Earthstar Geographics',
 };
 
-// Nadipudi Official Revenue Boundary Polygon (Exact Google Maps Boundary)
-export const nadipudiBoundaryPolygon = [
-  [16.6575, 81.8280],
-  [16.6560, 81.8390],
-  [16.6490, 81.8420],
-  [16.6410, 81.8390],
-  [16.6400, 81.8290],
-  [16.6450, 81.8250],
-  [16.6540, 81.8240],
-  [16.6575, 81.8280],
-];
+export const TILES = {
+  street: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+  satellite: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+};
 
-// Geographically Precise Diorama Landmarks (Matching Google Maps Layout)
-export const dioramaLandmarks = [
-  {
-    id: "geo1",
-    nameTe: "శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి ఆలయం (కోనేటి గట్టు)",
-    nameEn: "Sri Subramanyeswara Swamy Temple (Beside Temple Pond)",
-    categoryTe: "ప్రధాన దివ్య క్షేత్రం",
-    categoryEn: "Primary Shrine",
-    zoneTe: "గ్రామ కేంద్రం - ఆలయ పుష్కరిణి",
-    zoneEn: "Village Center - Beside Sacred Pond",
-    coords: [16.6487989, 81.8326407],
-    topOffset: "58%",
-    leftOffset: "46%",
-    icon: "🛕",
-    detailsTe: "నడిపూడి గ్రామ నడిబొడ్డున పవిత్ర ఆలయ కోనేరు (పుష్కరిణి) ఒడ్డున కొలువై ఉన్న పవిత్ర స్వయంభూ క్షేత్రం. రాజగోపురం మరియు వల్లీ దేవసేన సమేత మూలవిరాట్.",
-    detailsEn: "Famous Swayambhu shrine of Lord Subramanyeswara Swamy prominently situated beside the sacred village temple pond (Koneru)."
-  },
-  {
-    id: "geo2",
-    nameTe: "వసిష్ఠ గోదావరి నది, ఏటిగట్టు & పుష్కర ఘాట్",
-    nameEn: "Vasishtha Godavari River, Yetigattu & Pushkar Ghat",
-    categoryTe: "నదీ జలమార్గం & పుష్కర ఘాట్",
-    categoryEn: "Riverbank & Bathing Ghat",
-    zoneTe: "తూర్పు సరిహద్దు - ఏటిగట్టు ప్రక్కన",
-    zoneEn: "Eastern Boundary - Past Canal Bridge",
-    coords: [16.6510, 81.8410],
-    topOffset: "32%",
-    leftOffset: "82%",
-    icon: "🌊",
-    detailsTe: "నడిపూడి తూర్పు సరిహద్దులో ప్రవహించే పవిత్ర వసిష్ఠ గోదావరి నది. ఏటిగట్టు రక్షణ గోడ మరియు కాలువ వంతెన దాటిన తరువాత వెలసిన శ్రీ సుబ్రహ్మణ్యేశ్వర పుష్కర ఘాట్.",
-    detailsEn: "Sacred Vasishtha Godavari river flowing along the eastern edge of Nadipudi. Features Yetigattu river embankment and Sri Subramaneswara Pushkar Ghat past the canal bridge."
-  },
-  {
-    id: "geo3",
-    nameTe: "నడిపూడి నివాస గృహ సముదాయాలు (Village Settlement)",
-    nameEn: "Nadipudi Residential Houses & Wards",
-    categoryTe: "పౌర నివాస ప్రాంతం",
-    categoryEn: "Residential Wards",
-    zoneTe: "గ్రామ పడమటి & మధ్య భాగం",
-    zoneEn: "West & Center Wards",
-    coords: [16.6475, 81.8320],
-    topOffset: "64%",
-    leftOffset: "35%",
-    icon: "🏠",
-    detailsTe: "1,040 నివాస గృహాలు, 10 పంచాయతీ వార్డులు, గ్రామ సచివాలయం, పంచాయతీ కార్యాలయం మరియు మంచినీటి చెరువు సముదాయం.",
-    detailsEn: "Village settlement consisting of 1,040 households across 10 Panchayat wards, Secretariat, and drinking water tank."
-  },
-  {
-    id: "geo4",
-    nameTe: "స్వర్ణ వరి పంట పొలాలు (Paddy Fields)",
-    nameEn: "Swarna Rice Paddy Cultivation Ayacut",
-    categoryTe: "వ్యవసాయ మాగాణి పొలాలు",
-    categoryEn: "Rice Paddy Ayacut",
-    zoneTe: "ఉత్తర & వాయువ్య ఆయకట్టు",
-    zoneEn: "North & North-West Ayacut",
-    coords: [16.6530, 81.8300],
-    topOffset: "25%",
-    leftOffset: "40%",
-    icon: "🌾",
-    detailsTe: "గోదావరి డెల్టా కాటన్ కాలువ సాగునీటితో ఏటా రెండు పంటలు పండే 840 ఎకరాల పచ్చని స్వర్ణ వరి పొలాలు.",
-    detailsEn: "Lush green paddy fields covering 840 acres irrigated by the Sir Arthur Cotton Godavari canal network."
-  },
-  {
-    id: "geo5",
-    nameTe: "కొబ్బరి తోటలు & ఆక్వా రంగాలు (Coconut Orchards)",
-    nameEn: "Coconut Groves & Aqua Culture Ponds",
-    categoryTe: "తోటపంటలు & ఆక్వా",
-    categoryEn: "Coconut Orchards",
-    zoneTe: "దక్షిణ & ఆగ్నేయ సరిహద్దు",
-    zoneEn: "South & South-East Sector",
-    coords: [16.6450, 81.8360],
-    topOffset: "75%",
-    leftOffset: "65%",
-    icon: "🌴",
-    detailsTe: "260 ఎకరాలలో విస్తరించిన కొమ్ములు తిరిగిన ఎత్తైన కొబ్బరి తోటలు మరియు 140 ఎకరాల మంచినీటి ఆక్వా రొయ్యల చెరువులు.",
-    detailsEn: "260 acres of high-yielding coconut palm plantations interspersed with freshwater shrimp aquaculture ponds."
-  },
-  {
-    id: "geo6",
-    nameTe: "గ్రామ ఇతర దేవాలయాలు (Village Shrines)",
-    nameEn: "Other Village Temples (Rama, Anjaneya & Mavullamma)",
-    categoryTe: "ఆధ్యాత్మిక క్షేత్రాలు",
-    categoryEn: "Heritage Shrines",
-    zoneTe: "గ్రామ నివాస సరిహద్దులు",
-    zoneEn: "Village Perimeters",
-    coords: [16.6468, 81.8310],
-    topOffset: "72%",
-    leftOffset: "28%",
-    icon: "🛕",
-    detailsTe: "గ్రామ రక్షక దేవత శ్రీ మావుళ్ళమ్మ అమ్మవారి ఆలయం, శ్రీ రామాలయం మరియు శ్రీ భక్త ఆంజనేయ స్వామి ఆలయాలు.",
-    detailsEn: "Heritage village shrines including Sri Mavullamma Grama Devatha Temple, Sri Rama Mandiram, and Sri Anjaneya Swamy Temple."
-  }
-];
+export const OSM_EDIT_URL = `https://www.openstreetmap.org/edit#map=17/${VILLAGE[1]}/${VILLAGE[0]}`;

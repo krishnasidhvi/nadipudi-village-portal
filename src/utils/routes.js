@@ -23,6 +23,14 @@ export const routes = [
       "Sri Subramanyeswara Swamy Temple at Nadipudi, West Godavari: darshan timings, pujas, Subrahmanya Shashti festival, photos and how to reach.",
   },
   {
+    tab: "map",
+    path: "map",
+    titleEn: "Nadipudi Location, Map & 3D Village Layout",
+    titleTe: "నడిపూడి స్థానం, పటం & 3D గ్రామ నిర్మాణ దృశ్యం",
+    descEn:
+      "Where Nadipudi is: interactive map, 3D layout of the village's buildings, directions to the village and temple, nearby towns, stations and neighbouring villages.",
+  },
+  {
     tab: "agri",
     path: "agriculture",
     titleEn: "Weather, Paddy Prices & Godavari Level | Nadipudi",

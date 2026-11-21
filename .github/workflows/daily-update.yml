@@ -10,10 +10,6 @@ permissions:
   contents: write # commit the refreshed JSON
   actions: write  # start the deploy workflow afterwards
 
-concurrency:
-  group: live-data
-  cancel-in-progress: false
-
 jobs:
   update-data:
     runs-on: ubuntu-latest

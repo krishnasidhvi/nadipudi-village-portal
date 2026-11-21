@@ -11,6 +11,7 @@ export const translations = {
     // Reorganized 10 Tabs
     tabHome: "గ్రామ ముఖచిత్రం",
     tabTemple: "శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి దేవాలయం",
+    tabMap: "గ్రామ పటం & 3D",
     tabAgri: "వ్యవసాయం & వాతావరణం",
     tabSchemes: "ప్రభుత్వ పథకాలు",
     tabNotices: "ప్రకటనలు & హెచ్చరికలు",
@@ -96,6 +97,7 @@ export const translations = {
     // Reorganized 10 Tabs
     tabHome: "Home & Heritage",
     tabTemple: "Sri Subramanyeswara Temple",
+    tabMap: "Village Map & 3D",
     tabAgri: "Agriculture & Weather",
     tabSchemes: "Govt Welfare Schemes",
     tabNotices: "Notices & Alerts",

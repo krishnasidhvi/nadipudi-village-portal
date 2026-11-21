@@ -16,6 +16,7 @@ Every figure on the site carries its source and the date it was observed. Nothin
 |---|---|---|---|
 | Home | `/` | Weather now, paddy price, Godavari level, census headline figures | see below |
 | Temple | `/temple/` | Sri Subramanyeswara Swamy Temple: timings, pujas, festivals, photos | community (to be confirmed with the temple priests) |
+| Village Map & 3D | `/map/` | 2D map, 3D layout of the village's buildings, directions, distances, neighbouring villages | OpenStreetMap; Google Open Buildings via Overture Maps; Esri imagery |
 | Agriculture & Weather | `/agriculture/` | Current weather and 3-day forecast | [Open-Meteo](https://open-meteo.com/), fetched in the browser |
 | | | Paddy prices at Penugonda and other West Godavari markets | [Agmarknet via data.gov.in](https://www.data.gov.in/) |
 | | | Godavari level at Dowleswaram barrage with warning/danger levels | [Central Water Commission](https://ffs.india-water.gov.in/) |
@@ -40,6 +41,15 @@ Mandi prices need a free API key. Without one the script falls back to data.gov.
 
 1. Create a free account at [data.gov.in](https://www.data.gov.in/) and copy the API key from your profile.
 2. In the GitHub repository: **Settings → Secrets and variables → Actions → New repository secret**, name `DATA_GOV_IN_API_KEY`.
+
+## Map and 3D layout
+
+- `src/data/map/osm.json`: roads, the Godavari, villages, towns, stations and the airport from OpenStreetMap. Refresh with `npm run fetch-map`.
+- `src/data/map/buildings.json`: building outlines from [Overture Maps](https://overturemaps.org/) (here sourced from Google Open Buildings). Refresh with `pip install duckdb` then `python scripts/fetch_buildings.py` (takes a few minutes).
+- No height data exists for these buildings, so the 3D view draws them all at the same height. It shows the village's real layout, not what the houses look like.
+- No village boundary is drawn because no openly licensed official boundary is available.
+- The 3D library loads only when someone opens the 3D tab.
+- The easiest way to improve both maps is to add the temple, schools, canals and buildings to OpenStreetMap, then re-run the two fetch commands.
 
 ## Adding content
 

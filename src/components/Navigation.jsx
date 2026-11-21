@@ -1,10 +1,11 @@
 import React from "react";
-import { Home, Landmark, Wheat, Award, Bell, BarChart3, Vote, PhoneCall, HelpCircle } from "lucide-react";
+import { Home, Landmark, Map, Wheat, Award, Bell, BarChart3, Vote, PhoneCall, HelpCircle } from "lucide-react";
 
 export default function Navigation({ activeTab, setActiveTab, t }) {
   const tabs = [
     { id: "home", label: t.tabHome, icon: Home },
     { id: "temple", label: t.tabTemple, icon: Landmark },
+    { id: "map", label: t.tabMap, icon: Map },
     { id: "agri", label: t.tabAgri, icon: Wheat },
     { id: "schemes", label: t.tabSchemes, icon: Award },
     { id: "notices", label: t.tabNotices, icon: Bell },
