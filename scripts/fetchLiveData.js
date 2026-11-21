@@ -38,13 +38,37 @@ function write(name, data) {
   fs.writeFileSync(path.join(OUT_DIR, name), JSON.stringify(data, null, 2) + "\n", "utf8");
 }
 
+// Node's fetch reports every network problem as "fetch failed" and hides the
+// real reason (DNS, refused connection, reset, TLS, timeout) in err.cause.
+function describeError(err) {
+  const parts = [err.message];
+  for (let cause = err.cause; cause; cause = cause.cause) {
+    parts.push([cause.code, cause.message].filter(Boolean).join(": "));
+  }
+  return parts.join(" <- ");
+}
+
+const RETRY_DELAYS_MS = [5000, 20000];
+
 async function get(url) {
-  const res = await fetch(url, {
-    headers: { "User-Agent": USER_AGENT, Accept: "application/json, application/xml, text/xml, */*" },
-    signal: AbortSignal.timeout(TIMEOUT_MS),
-  });
-  if (!res.ok) throw new Error(`HTTP ${res.status} from ${new URL(url).host}`);
-  return res;
+  const host = new URL(url).host;
+  for (let attempt = 0; ; attempt++) {
+    try {
+      const res = await fetch(url, {
+        headers: { "User-Agent": USER_AGENT, Accept: "application/json, application/xml, text/xml, */*" },
+        signal: AbortSignal.timeout(TIMEOUT_MS),
+      });
+      // HTTP errors are a real answer from the server; retrying won't help.
+      if (!res.ok) throw Object.assign(new Error(`HTTP ${res.status} from ${host}`), { final: true });
+      return res;
+    } catch (err) {
+      if (err.final || attempt >= RETRY_DELAYS_MS.length) {
+        throw new Error(`${host}: ${describeError(err)}`, { cause: err });
+      }
+      console.warn(`[${host}] attempt ${attempt + 1} failed (${describeError(err)}); retrying in ${RETRY_DELAYS_MS[attempt] / 1000}s`);
+      await new Promise((resolve) => setTimeout(resolve, RETRY_DELAYS_MS[attempt]));
+    }
+  }
 }
 
 // "21/11/2026" -> "2026-11-21"
