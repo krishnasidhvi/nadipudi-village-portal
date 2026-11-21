@@ -32,7 +32,7 @@ Telugu and English are both supported throughout.
 ## How the data stays current
 
 - **Weather** is fetched by the visitor's browser from Open-Meteo each time (cached for 30 minutes). It is a weather-model estimate, not a village measurement.
-- **Mandi prices, river level and alerts** are fetched twice a day by `.github/workflows/daily-update.yml`, which runs `scripts/fetchLiveData.js`, commits `src/data/live/*.json` and starts a deploy.
+- **Mandi prices, river level and alerts** are fetched twice a day by `.github/workflows/refresh-live-data.yml`, which runs `scripts/fetchLiveData.js`, commits `src/data/live/*.json` and starts a deploy.
 - If a source fails, its previous file is kept and the site marks that reading as out of date. It never shows a made-up value.
 
 ### One-time setup: data.gov.in API key

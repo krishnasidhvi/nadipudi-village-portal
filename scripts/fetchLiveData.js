@@ -1,5 +1,5 @@
 // Fetches real public data for the portal and writes it to src/data/live/*.json.
-// Run by .github/workflows/daily-update.yml, or locally with `npm run fetch-data`.
+// Run by .github/workflows/refresh-live-data.yml, or locally with `npm run fetch-data`.
 //
 // Each source is independent: if one fails, its existing JSON file is left
 // untouched, so the site keeps showing the last good reading with its real date
