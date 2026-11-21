@@ -12,15 +12,23 @@ permissions:
 
 jobs:
   update-data:
-    runs-on: ubuntu-latest
+    # data.gov.in and the CWC flood forecast site refuse connections from
+    # GitHub's own servers, so this runs on a self-hosted runner in India
+    # (a Windows PC with the label "india"). If that PC is off, the job waits
+    # in the queue and runs when it comes back online (up to 24 hours).
+    runs-on: [self-hosted, india]
+    timeout-minutes: 15
+    defaults:
+      run:
+        # On this PC "bash" is WSL, so use Windows PowerShell.
+        shell: powershell
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      # Node.js 22 is installed on the runner PC.
+      - name: Show Node.js version
+        run: node --version
 
       # Fetches Agmarknet prices, the CWC Godavari level and NDMA alerts into
       # src/data/live/. A source that fails keeps its previous file, and the
@@ -36,15 +44,21 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          # Repository-local identity only: never touch the PC owner's global git config.
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add src/data/live
-          if git diff --staged --quiet; then
-            echo "No data changes."
+          git diff --staged --quiet
+          if ($LASTEXITCODE -eq 0) {
+            Write-Output "No data changes."
             exit 0
-          fi
-          git commit -m "Refresh live data [$(date -u +'%Y-%m-%d %H:%M') UTC]"
+          }
+          $stamp = (Get-Date).ToUniversalTime().ToString("yyyy-MM-dd HH:mm")
+          git commit -m "Refresh live data [$stamp UTC]"
+          if ($LASTEXITCODE -ne 0) { exit 1 }
           git push origin HEAD:main
+          if ($LASTEXITCODE -ne 0) { exit 1 }
           # A push made with the workflow token does not trigger other
           # workflows, so start the deploy explicitly.
           gh workflow run deploy.yml --ref main
+          if ($LASTEXITCODE -ne 0) { exit 1 }
