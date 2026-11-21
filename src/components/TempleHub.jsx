@@ -24,8 +24,51 @@ import { getLocalMediaItems, deleteLocalMediaItem } from "../utils/templeMediaSt
 import TempleMediaQRModal from "./TempleMediaQRModal";
 import TempleMediaUploadModal from "./TempleMediaUploadModal";
 import TempleMediaLightbox from "./TempleMediaLightbox";
+import SourceNote from "./SourceNote";
+import { nextFestival } from "../utils/festivals";
 
-// Import authentic deity photo and Google Maps photo
+// Shown on sections whose details the temple has not yet confirmed.
+function UnconfirmedNotice({ isTe }) {
+  if (templeInfo.detailsConfirmed) return null;
+  return (
+    <div className="card" style={{ marginBottom: "16px", borderLeft: "4px solid #fbbf24", fontSize: "0.9rem", lineHeight: 1.6 }}>
+      ⚠️{" "}
+      {isTe
+        ? "ఈ విభాగంలోని సమయాలు మరియు వివరాలు ఇంకా ఆలయ కమిటీ నిర్ధారించలేదు. ప్రయాణానికి ముందు ఆలయం వద్ద సరిచూసుకోండి."
+        : "The timings and details in this section have not yet been confirmed by the temple committee. Please check with the temple before you travel."}
+    </div>
+  );
+}
+
+function FestivalCountdown({ isTe }) {
+  const fest = nextFestival(templeInfo.festivalDates);
+  if (!fest) return null;
+  const when = new Date(`${fest.date}T12:00:00+05:30`).toLocaleDateString(isTe ? "te-IN" : "en-IN", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "Asia/Kolkata",
+  });
+  const days = fest.daysAway;
+  return (
+    <div className="card" style={{ marginBottom: "20px", borderLeft: "4px solid var(--divine-saffron)", background: "rgba(234, 88, 12, 0.12)" }}>
+      <div style={{ fontSize: "0.8rem", color: "#fdba74", fontWeight: 700 }}>
+        🚩 {isTe ? "రాబోయే ఉత్సవం" : "Upcoming festival"}
+      </div>
+      <h3 style={{ fontSize: "1.3rem", color: "#ffffff", margin: "4px 0" }}>
+        {isTe ? fest.nameTe : fest.nameEn} · {when}
+      </h3>
+      <div style={{ fontWeight: 700, color: "#fde047" }}>
+        {days === 0 ? (isTe ? "ఈ రోజే!" : "Today!") : days === 1 ? (isTe ? "రేపు" : "Tomorrow") : isTe ? `ఇంకా ${days} రోజులు` : `${days} days to go`}
+      </div>
+      <p style={{ fontSize: "0.88rem", marginTop: "6px", lineHeight: 1.5 }}>{isTe ? fest.noteTe : fest.noteEn}</p>
+      <SourceNote lang={isTe ? "te" : "en"} source={isTe ? "ద్రిక్ పంచాంగ్" : "Drik Panchang"} url={fest.sourceUrl} />
+    </div>
+  );
+}
+
+// Deity photo and a visitor photo from Google Maps
 import godDeityImg from "../assets/temple_god_deity.webp";
 import googleMapsPhotoImg from "../assets/temple_google_maps_photo.webp";
 
@@ -44,23 +87,23 @@ export default function TempleHub({ lang, t, initialAction }) {
   const galleryItems = [
     {
       id: "g1",
-      titleTe: "మూలవిరాట్ శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి నిజరూప దర్శనం",
-      titleEn: "Nadipudi Swayambhu Deity Authentic Shrine Darshan",
+      titleTe: "మూలవిరాట్ శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి దర్శనం",
+      titleEn: "Darshan of the Presiding Deity",
       img: godDeityImg,
-      badgeTe: "పవిత్ర మూలవిరాట్ నిజరూపం",
-      badgeEn: "Authentic Shrine Darshan",
+      badgeTe: "మూలవిరాట్ దర్శనం",
+      badgeEn: "Deity Darshan",
       descTe: "నడిపూడి గ్రామంలో స్వయంభూవుగా వెలసిన శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి వారు (శ్రీ వల్లి, దేవసేన సమేతంగా) సర్ప చత్రాకార ప్రభావళి మరియు స్వర్ణాభరణ దివ్యాభిషేక నిజరూప దర్శనం.",
-      descEn: "Authentic shrine photograph of Lord Subramanyeswara Swamy along with Valli and Devasena adorned with golden ornaments and flower garlands at Nadipudi."
+      descEn: "Photograph of Lord Subramanyeswara Swamy along with Valli and Devasena adorned with golden ornaments and flower garlands at Nadipudi."
     },
     {
       id: "g3",
-      titleTe: "గూగుల్ మ్యాప్స్ భక్తుల క్షేత్ర సమర్పణ ఛాయాచిత్రం",
-      titleEn: "Google Maps Verified Pilgrim Photo",
+      titleTe: "గూగుల్ మ్యాప్స్‌లో సందర్శకులు పంచుకున్న ఫోటో",
+      titleEn: "Visitor Photo from Google Maps",
       img: googleMapsPhotoImg,
-      badgeTe: "గూగుల్ మ్యాప్స్ పబ్లిక్ ఫోటో",
-      badgeEn: "Google Maps Verified Photo",
+      badgeTe: "సందర్శకుల ఫోటో",
+      badgeEn: "Visitor Photo",
       descTe: "నడిపూడి శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి ఆలయాన్ని దర్శించిన భక్తులు సమర్పించిన పబ్లిక్ ఛాయాచిత్రం.",
-      descEn: "Authentic public photograph contributed by devotees on Google Maps for Sri Subramanyeswara Swami Temple Nadipudi."
+      descEn: "Photograph shared by a visitor on the temple's Google Maps listing."
     }
   ];
 
@@ -180,7 +223,9 @@ export default function TempleHub({ lang, t, initialAction }) {
         </div>
       </div>
 
-      {/* Authentic Shrine & AI Gopuram Photo Gallery (UNCROPPED FULL IMAGE VISIBILITY) */}
+      <FestivalCountdown isTe={isTe} />
+
+      {/* Photo gallery */}
       <div className="card" style={{ marginBottom: "28px", background: "rgba(0, 0, 0, 0.45)", border: "1.5px solid rgba(234, 88, 12, 0.4)" }}>
         <div className="card-title-group" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
@@ -189,10 +234,10 @@ export default function TempleHub({ lang, t, initialAction }) {
             </div>
             <div>
               <h3 style={{ color: "var(--divine-saffron)" }}>
-                {isTe ? "నడిపూడి సుబ్రహ్మణ్యేశ్వర స్వామి మూలవిరాట్ & క్షేత్ర దర్శన చిత్రమాలిక" : "Nadipudi Shrine Authentic Deity Darshan & Pilgrim Photos"}
+                {isTe ? "నడిపూడి సుబ్రహ్మణ్యేశ్వర స్వామి మూలవిరాట్ & క్షేత్ర దర్శన చిత్రమాలిక" : "Deity Darshan & Visitor Photos"}
               </h3>
               <p style={{ fontSize: "0.85rem", color: "#cbd5e1" }}>
-                {isTe ? "చిత్రాలు ఏమాత్రం కత్తిరించబడకుండా పూర్తి సహజ పరిమాణంలో ప్రదర్శించబడుతున్నాయి" : "Full uncropped view of authentic shrine deity photo and Google Maps photo"}
+                {isTe ? "చిత్రాలు ఏమాత్రం కత్తిరించబడకుండా పూర్తి సహజ పరిమాణంలో ప్రదర్శించబడుతున్నాయి" : "Photos are shown in full, without cropping"}
               </p>
             </div>
           </div>
@@ -373,6 +418,11 @@ export default function TempleHub({ lang, t, initialAction }) {
             <p style={{ lineHeight: "1.8", fontSize: "0.96rem", color: "#f1f5f9" }}>
               {isTe ? templeInfo.significanceTe : templeInfo.significanceEn}
             </p>
+            <SourceNote
+              lang={lang}
+              source={isTe ? templeInfo.historySource.labelTe : templeInfo.historySource.labelEn}
+              url={templeInfo.historySource.url}
+            />
             <div style={{ marginTop: "18px", padding: "16px", background: "rgba(234, 88, 12, 0.15)", borderRadius: "12px", borderLeft: "4px solid var(--divine-saffron)" }}>
               <strong style={{ color: "#fde047" }}>{isTe ? "ఆధ్యాత్మిక దోష నివారణ విశ్వాసం:" : "Spiritual Belief & Benefits:"}</strong>{" "}
               <p style={{ fontSize: "0.92rem", marginTop: "4px", color: "#e2e8f0" }}>
@@ -398,7 +448,7 @@ export default function TempleHub({ lang, t, initialAction }) {
                 <strong>📍 {isTe ? "స్థల చిరునామా:" : "Location Address:"}</strong> {isTe ? templeInfo.locationTe : templeInfo.locationEn}
               </div>
               <div style={{ background: "rgba(255,255,255,0.06)", padding: "12px 14px", borderRadius: "10px" }}>
-                <strong>🚩 {isTe ? "ప్రధాన ఉత్సవం:" : "Main Festival:"}</strong> {isTe ? "మార్గశిర సుబ్రహ్మణ్య షష్ఠి కళ్యాణోత్సవం & నాగుల చవితి" : "Subrahmanya Shashti Kalyanotsavam & Nagula Chavithi"}
+                <strong>🚩 {isTe ? "ప్రధాన ఉత్సవం:" : "Main Festival:"}</strong> {isTe ? "సుబ్రహ్మణ్య షష్ఠి తిరునాళ్ళు (మార్గశిర శుద్ధ షష్ఠి)" : "Subrahmanya Shashti Tirunallu (Margasira Shuddha Shashti)"}
               </div>
             </div>
             <div style={{ marginTop: "16px" }}>
@@ -765,6 +815,7 @@ export default function TempleHub({ lang, t, initialAction }) {
       {/* Sub-Tab 3: Pujas & Dosha Relief Services */}
       {activeSubTab === "pujas" && (
         <div>
+          <UnconfirmedNotice isTe={isTe} />
           <div className="grid-3" style={{ marginBottom: "20px" }}>
             {templeInfo.pujas.map((puja) => (
               <div key={puja.id} className="card">
@@ -786,6 +837,7 @@ export default function TempleHub({ lang, t, initialAction }) {
 
       {/* Sub-Tab 4: Subrahmanya Shashti & Festival Calendar */}
       {activeSubTab === "festivals" && (
+        <>
         <div className="grid-2">
           {templeInfo.festivals.map((fest) => (
             <div key={fest.id} className="card">
@@ -801,10 +853,13 @@ export default function TempleHub({ lang, t, initialAction }) {
             </div>
           ))}
         </div>
+        </>
       )}
 
       {/* Sub-Tab 5: Temple Prasadam & Offerings */}
       {activeSubTab === "prasadam" && (
+        <>
+        <UnconfirmedNotice isTe={isTe} />
         <div className="grid-2">
           <div className="card">
             <div className="card-title-group">
@@ -842,15 +897,18 @@ export default function TempleHub({ lang, t, initialAction }) {
             </div>
             <p style={{ fontSize: "0.93rem", color: "#f1f5f9", lineHeight: "1.7" }}>
               {isTe
-                ? "మార్గశిర సుబ్రహ్మణ్య షష్ఠి బ్రహ్మోత్సవాలు మరియు ప్రతి మాస షష్ఠి రోజున దేవాలయంలో విచ్చేసిన వేలాది భక్తులకు ఉచిత నిత్యాన్నదానం నిర్వహించబడుతుంది. దాతలు విరాళాల కొరకు సచివాలయం లేదా దేవాదాయ శాఖ ఆలయ అధికారులను సంప్రదించగలరు."
-                : "Free Annadanam (sacred food distribution) is conducted for thousands of devotees during Subrahmanya Shashti Brahmotsavam and monthly Shashti days."}
+                ? "ఉత్సవాల సమయంలో భక్తులకు ఉచిత అన్నదానం జరుగుతుందని చెబుతారు. వివరాలు ఆలయం వద్ద నిర్ధారించుకోండి."
+                : "Free annadanam (food offered to devotees) is reported to be held during festivals. Details to be confirmed with the temple."}
             </p>
           </div>
         </div>
+        </>
       )}
 
       {/* Sub-Tab 6: Timings & Pilgrim Transport */}
       {activeSubTab === "timings" && (
+        <>
+        <UnconfirmedNotice isTe={isTe} />
         <div className="grid-2">
           <div className="card">
             <div className="card-title-group">
@@ -896,6 +954,7 @@ export default function TempleHub({ lang, t, initialAction }) {
             </div>
           </div>
         </div>
+        </>
       )}
 
       {/* Dynamic QR Code Modal */}

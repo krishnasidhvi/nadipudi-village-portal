@@ -7,13 +7,42 @@ export const templeInfo = {
   locationEn: "Nadipudi Village, Penugonda Mandal, West Godavari District, Andhra Pradesh - 534326",
   googleMapsUrl: "https://www.google.com/maps/place/Sri+subrahmanyeswara+swami+temple,+nadipudi/@16.6487989,81.8326407,17z/",
   coords: [16.6487989, 81.8326407],
-  trustTe: "ఆంధ్రప్రదేశ్ దేవాదాయ ధర్మదాయ శాఖ నిర్వహణ",
-  trustEn: "Managed under AP Endowments Department Trust Board",
+  // Management (trust board / Endowments Department) is not documented in any
+  // public source found so far; confirm with the temple before stating it.
+  trustTe: "నిర్ధారించాల్సి ఉంది (ఆలయ కమిటీని సంప్రదించండి)",
+  trustEn: "To be confirmed with the temple committee",
 
+
+  // Traditional account (sthala purana) as reported by ETV Bharat, 28 May 2024.
+  // Note: the article places the temple in East Godavari near Ravulapalem; it
+  // describes this temple on the Vasishta Godavari bank, across the river.
   significanceTe:
-    "పశ్చిమ గోదావరి జిల్లా పెనుగొండ ప్రాంతంలో ప్రసిద్ధి గాంచిన అత్యంత మహిమాన్విత స్వయంభూ క్షేత్రం నడిపూడి శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి ఆలయం. ఇక్కడ స్వామి వారు వల్లీ దేవసేన సమేతంగా, నాగేంద్ర స్వామి సర్ప చత్రాకార ప్రభావళితో కొలువై ఉన్నారు. జాతకంలో కుజ దోషం, రాహు-కేతు సర్ప దోషాలు మరియు వివాహ విలంబన ఎదుర్కొంటున్న భక్తులు ఇక్కడ ప్రత్యేక అభిషేకాలు, సర్ప సూక్త హోమాలు జరిపింపజేస్తే దోష నివారణ జరిగి శీఘ్ర వివాహం మరియు సంతాన ప్రాప్తి కలుగుతుందని గట్టి నమ్మకం.",
+    "ఈటీవీ భారత్ ప్రచురించిన ఆలయ స్థల పురాణం ప్రకారం, స్వామి వారు నాసిక్ సమీపంలోని త్ర్యంబకేశ్వరం నుండి గోదావరి నది వెంట సర్ప రూపంలో వచ్చి ఇక్కడ స్వయంభువుగా వెలిశారు. ఒక భక్తునికి కలలో వచ్చిన ఆదేశం మేరకు అరటి దొప్పలతో చేసిన పల్లకిలో స్వామిని ఊరేగించగా, ఆ ఊరేగింపు ఆగిన చోట ఆలయం నిర్మించారని చెబుతారు. ఆలయ తూర్పు ద్వారం వద్ద ఉన్న పుట్టను అద్దం ద్వారా దర్శించుకుంటారు. 1973లో ఆలయ పునరుద్ధరణ సమయంలో వల్లీ దేవసేన విగ్రహాలను ప్రతిష్ఠించారు. ఇవి సంప్రదాయం మరియు భక్తుల విశ్వాసానికి సంబంధించిన విషయాలు.",
   significanceEn:
-    "Sri Subramanyeswara Swamy Temple at Nadipudi is one of the most revered Swayambhu shrines in West Godavari district, Andhra Pradesh. The primary deity is worshipped along with consorts Valli and Devasena under the five-headed serpent hood Prabhavali. Devotees from across Andhra Pradesh visit this sacred shrine for Sarpa Dosha Shanti, Kuja Dosha Relief, Marriage Blessings, and Subrahmanya Shashti Kalyanotsavam.",
+    "According to the temple's traditional account (sthala purana) as reported by ETV Bharat, the Lord came down the Godavari from Trimbakeshwar near Nasik in the form of a serpent and appeared here on his own (swayambhu). A devotee is said to have been told in a dream to carry the deity in procession on a palanquin made of banana-plant sheaths, and the shrine was built where the procession stopped. An anthill stands at the temple's east entrance and is viewed through a mirror. The idols of Valli and Devasena were installed when the temple was renovated in 1973. These are matters of tradition and belief.",
+  historySource: {
+    labelTe: "ఈటీవీ భారత్, 28 మే 2024",
+    labelEn: "ETV Bharat, 28 May 2024",
+    url: "https://www.etvbharat.com/te/!spiritual/nadipudi-subramanya-swamy-temple-history-significance-and-importance-of-nadipudi-subramanya-swamy-located-in-east-godavari-district-andhrapradesh-ten24052703987",
+  },
+
+  // Timings, pujas and prasadam below have NOT been confirmed by the temple.
+  // The page shows a notice until this is set to true after checking with them.
+  detailsConfirmed: false,
+
+  // Upcoming festival dates. Add next year's date once a panchangam publishes it;
+  // past dates are hidden automatically.
+  festivalDates: [
+    {
+      id: "shashti-2026",
+      date: "2026-12-15",
+      nameTe: "సుబ్రహ్మణ్య షష్ఠి",
+      nameEn: "Subrahmanya Shashti",
+      noteTe: "కళ్యాణోత్సవం ముందు రోజు (పంచమి) రాత్రి; రథోత్సవం & తిరునాళ్ళు షష్ఠి రోజున. సమయాలను ఆలయం వద్ద నిర్ధారించుకోండి.",
+      noteEn: "The kalyanam is on the night before (Panchami); the rathotsavam and tirunallu are on Shashti. Confirm timings with the temple.",
+      sourceUrl: "https://www.drikpanchang.com/festivals/subrahmanya-sashti/subrahmanya-sashti-date-time.html?year=2026",
+    },
+  ],
 
   timings: [
     { sessionTe: "ఉదయం దర్శనం & సుప్రభాత సేవ", sessionEn: "Morning Darshan & Suprabhata Seva", time: "06:00 AM - 11:30 AM" },
@@ -72,42 +101,52 @@ export const templeInfo = {
     }
   ],
 
+  // Festivals named in the ETV Bharat account (see historySource).
   festivals: [
     {
       id: "f1",
-      nameTe: "మార్గశిర సుబ్రహ్మణ్య షష్ఠి బ్రహ్మోత్సవాలు",
-      nameEn: "Margasira Subrahmanya Shashti Brahmotsavam",
-      monthTe: "మార్గశిర మాసం (నవంబర్ / డిసెంబర్)",
-      monthEn: "Margasira Month (Nov / Dec)",
-      descTe: "నడిపూడి గ్రామంలో 6 రోజుల పాటు అత్యంత వైభవంగా జరిగే వార్షిక బ్రహ్మోత్సవాలు. రథోత్సవం, స్వామి వారి దివ్య గ్రామోత్సవం మరియు సాంస్కృతిక కార్యక్రమాలు.",
-      descEn: "Grand 6-day annual festival featuring Rathotsavam chariot procession, celestial wedding, and cultural events."
+      nameTe: "సుబ్రహ్మణ్య షష్ఠి తిరునాళ్ళు",
+      nameEn: "Subrahmanya Shashti Tirunallu",
+      monthTe: "మార్గశిర శుద్ధ షష్ఠి (నవంబర్ / డిసెంబర్)",
+      monthEn: "Margasira Shuddha Shashti (Nov / Dec)",
+      descTe: "ఆలయ ప్రధాన ఉత్సవం. మార్గశిర శుద్ధ పంచమి రాత్రి స్వామి వారి కళ్యాణోత్సవం, షష్ఠి రోజున రథోత్సవం మరియు తిరునాళ్ళు జరుగుతాయి.",
+      descEn: "The temple's main festival. The celestial wedding (kalyanam) is held on the night of Margasira Shuddha Panchami, followed by the chariot procession (rathotsavam) and fair (tirunallu) on Shashti."
     },
     {
       id: "f2",
-      nameTe: "నాగుల చవితి మహోత్సవం",
-      nameEn: "Nagula Chavithi Festival",
-      monthTe: "కార్తిక మాసం (అక్టోబర్ / నవంబర్)",
-      monthEn: "Karthika Month (Oct / Nov)",
-      descTe: "గోదావరి డెల్టా ప్రాంతం నలుమూలల నుండి వేలాది భక్తులు తరలివచ్చి నాగేంద్ర స్వామికి ప్రత్యేక పూజలు మరియు పాలాభిషేకాలు జరిపిస్తారు.",
-      descEn: "Major festival attracting thousands of devotees across Godavari districts offering prayers for family health."
+      nameTe: "నాగుల చవితి",
+      nameEn: "Nagula Chavithi",
+      monthTe: "కార్తిక శుద్ధ చవితి (అక్టోబర్ / నవంబర్)",
+      monthEn: "Karthika Shuddha Chavithi (Oct / Nov)",
+      descTe: "భక్తులు ఆలయ పుట్ట వద్ద పాలు సమర్పించి నాగేంద్ర స్వామిని పూజిస్తారు.",
+      descEn: "Devotees offer milk at the temple's anthill in worship of the serpent deity."
     },
     {
       id: "f3",
-      nameTe: "మాస షష్ఠి ఉత్సవాలు (Monthly Shashti)",
-      nameEn: "Monthly Shashti Pujas",
-      monthTe: "ప్రతి నెల శుక్ల పక్ష షష్ఠి తిథి",
-      monthEn: "Every Lunar Month Shashti Tithi",
-      descTe: "ప్రతి నెల షష్ఠి తిథి నాడు స్వామి వారికి ప్రత్యేక అభిషేకాలు, కుమార హోమం మరియు తీర్థ ప్రసాద వితరణ.",
-      descEn: "Special monthly rituals with Abhishekam, Kumara Homam, and distribution of Mahaprasadam."
+      nameTe: "ఆషాఢ షష్ఠి",
+      nameEn: "Ashadha Shashti",
+      monthTe: "ఆషాఢ మాసం (జూన్ / జూలై)",
+      monthEn: "Ashadha month (Jun / Jul)",
+      descTe: "ఆషాఢ మాస షష్ఠి రోజున స్వామి వారికి ప్రత్యేక పూజలు.",
+      descEn: "Special worship of the Lord on the Shashti of Ashadha month."
     },
     {
       id: "f4",
-      nameTe: "కార్తిక మాసం మహోత్సవాలు",
-      nameEn: "Karthika Month Celebrations",
-      monthTe: "కార్తిక మాసం అంతయు",
-      monthEn: "Entire Karthika Month",
-      descTe: "నెల పొడవునా ఆలయంలో నిత్య జ్వాలా తోరణం, ఆకాశ దీపం, రుద్రాభిషేకాలు మరియు రాత్రి విశేష హారతులు.",
-      descEn: "Month-long celebrations including Akasha Deepam, Rudrabhishekam, and special evening lamp decorations."
+      nameTe: "కృత్తిక",
+      nameEn: "Krittika",
+      monthTe: "కృత్తిక నక్షత్రం రోజున",
+      monthEn: "On Krittika star days",
+      descTe: "సుబ్రహ్మణ్య స్వామికి ప్రీతికరమైన కృత్తిక నక్షత్రం రోజున ప్రత్యేక పూజలు.",
+      descEn: "Special worship on Krittika, the star associated with Lord Subrahmanya."
+    },
+    {
+      id: "f5",
+      nameTe: "ముక్కోటి ఏకాదశి",
+      nameEn: "Mukkoti Ekadasi",
+      monthTe: "మార్గశిర / పుష్య మాసం (డిసెంబర్ / జనవరి)",
+      monthEn: "Margasira / Pushya month (Dec / Jan)",
+      descTe: "ముక్కోటి ఏకాదశి సందర్భంగా ఆలయంలో ప్రత్యేక పూజలు.",
+      descEn: "Special worship at the temple on Mukkoti (Vaikuntha) Ekadasi."
     }
   ],
 

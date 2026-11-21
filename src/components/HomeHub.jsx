@@ -1,6 +1,8 @@
 import React from "react";
 import { Landmark, Sparkles, Wheat, HeartHandshake, Users, ArrowRight, Home, MapPin, Sprout, Activity } from "lucide-react";
 import SourceNote from "./SourceNote";
+import { templeInfo } from "../data/templeData";
+import { nextFestival } from "../utils/festivals";
 import { census2011, censusSources } from "../data/censusData";
 import { useWeather, describeWeather, WEATHER_SOURCE } from "../utils/useWeather";
 import {
@@ -20,6 +22,7 @@ export default function HomeHub({ lang, t, setActiveTab }) {
   const weather = useWeather();
   const status = riverStatusLabel[riverStatus()];
   const today = weather.data?.days[0];
+  const festival = nextFestival(templeInfo.festivalDates);
 
   return (
     <div className="home-hub-container">
@@ -203,8 +206,16 @@ export default function HomeHub({ lang, t, setActiveTab }) {
           <p>
             {isTe
               ? "పశ్చిమ గోదావరి జిల్లా పెనుగొండ ప్రాంతంలో వెలసిన అత్యంత మహిమాన్విత స్వయంభూ క్షేత్రం. కుజ దోషం, సర్ప దోష నివారణ పూజలు మరియు శ్రీ సుబ్రహ్మణ్య షష్ఠి కళ్యాణోత్సవాలు ఇక్కడ విశేషంగా జరుగుతాయి."
-              : "Renowned Swayambhu deity shrine in West Godavari district, revered by thousands of devotees for Sarpa Dosha Shanti pujas and Subrahmanya Shashti Kalyanotsavam."}
+              : "Renowned Swayambhu deity shrine in West Godavari district, known for Sarpa Dosha Shanti pujas and the Subrahmanya Shashti festival."}
           </p>
+          {festival && (
+            <p style={{ marginTop: "10px", fontWeight: 700, color: "#fde047" }}>
+              🚩 {isTe ? festival.nameTe : festival.nameEn}:{" "}
+              {new Date(`${festival.date}T12:00:00+05:30`).toLocaleDateString(isTe ? "te-IN" : "en-IN", { day: "numeric", month: "long", timeZone: "Asia/Kolkata" })}
+              {" · "}
+              {festival.daysAway === 0 ? (isTe ? "ఈ రోజే" : "today") : isTe ? `ఇంకా ${festival.daysAway} రోజులు` : `${festival.daysAway} days to go`}
+            </p>
+          )}
           <div style={{ marginTop: "16px", display: "flex", gap: "12px", flexWrap: "wrap" }}>
             <button className="btn-primary" onClick={() => setActiveTab("temple")}>
               {isTe ? "ఆలయ సమయాలు, పూజలు & విశేషాలు చూడండి" : "Explore Temple Rituals & Timings"}
