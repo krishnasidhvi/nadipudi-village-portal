@@ -1,12 +1,12 @@
 {
-  "fetchedAt": "2026-11-22T10:07:34.145Z",
+  "fetchedAt": "2026-11-22T19:55:43.064Z",
   "source": "Central Water Commission flood forecast system",
   "sourceUrl": "https://ffs.india-water.gov.in/",
   "station": "Dowlaiswaram (Sir Arthur Cotton Barrage), Godavari",
   "stationCode": "028-LGDHYD",
   "unit": "metres",
   "latest": {
-    "time": "2026-11-21T18:00:00+05:30",
+    "time": "2026-11-22T18:00:00+05:30",
     "level": 13.99
   },
   "thresholds": {
@@ -16,18 +16,6 @@
     "highestRecordedDate": "1986-08-16"
   },
   "readings": [
-    {
-      "time": "2026-11-19T11:00:00+05:30",
-      "level": 13.99
-    },
-    {
-      "time": "2026-11-19T12:00:00+05:30",
-      "level": 13.99
-    },
-    {
-      "time": "2026-11-19T13:00:00+05:30",
-      "level": 13.99
-    },
     {
       "time": "2026-11-19T14:00:00+05:30",
       "level": 13.99
@@ -206,6 +194,18 @@
     },
     {
       "time": "2026-11-21T18:00:00+05:30",
+      "level": 13.99
+    },
+    {
+      "time": "2026-11-22T08:00:00+05:30",
+      "level": 13.99
+    },
+    {
+      "time": "2026-11-22T13:00:00+05:30",
+      "level": 13.99
+    },
+    {
+      "time": "2026-11-22T18:00:00+05:30",
       "level": 13.99
     }
   ]
